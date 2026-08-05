@@ -36,7 +36,7 @@
   }
 }
 
-/* Body uses Inter from layout.tsx style={inter.style} */
+/* Body uses montserrat from layout.tsx style={montserrat.style} */
 body {
   background: var(--background);
   color: var(--foreground);
@@ -46,9 +46,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Heading font - Inter */
+/* Heading font - montserrat */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   color: var(--primary);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -72,13 +72,13 @@ h3 {
 
 /* Utility classes for fonts */
 .font-heading {
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
 .font-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-family: 'montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
   font-weight: 400;
   line-height: 1.6;
 }
@@ -165,7 +165,7 @@ h3 {
   border: none;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(19, 17, 100, 0.3);
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -182,7 +182,7 @@ h3 {
   color: var(--primary);
   border: 2px solid var(--primary);
   transition: all 0.3s ease;
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -213,7 +213,7 @@ h3 {
   text-decoration: none;
   position: relative;
   transition: color 0.3s ease;
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   font-weight: 500;
 }
 
@@ -241,7 +241,7 @@ h3 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   font-weight: 700;
 }
 
@@ -250,7 +250,7 @@ h3 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   font-weight: 700;
 }
 
@@ -280,7 +280,7 @@ input:focus, textarea:focus, select:focus {
   border-color: var(--primary) !important;
   box-shadow: 0 0 0 3px rgba(19, 17, 100, 0.15) !important;
   outline: none;
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
 }
 
 ::selection {
@@ -361,52 +361,52 @@ input:focus, textarea:focus, select:focus {
   color: var(--dark-navy);
 }
 
-/* Inter style typography */
-.inter-heading {
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+/* montserrat style typography */
+.montserrat-heading {
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
 
-.inter-subheading {
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+.montserrat-subheading {
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
-.inter-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+.montserrat-body {
+  font-family: 'montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-weight: 400;
   line-height: 1.7;
   letter-spacing: 0.01em;
 }
 
-.inter-small {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+.montserrat-small {
+  font-family: 'montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-weight: 400;
   font-size: 0.875rem;
   line-height: 1.6;
   letter-spacing: 0.02em;
 }
 
-.inter-button {
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+.montserrat-button {
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-.inter-nav {
-  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+.montserrat-nav {
+  font-family: 'montserrat', 'Segoe UI', Roboto, sans-serif;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.inter-label {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+.montserrat-label {
+  font-family: 'montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-weight: 500;
   letter-spacing: 0.03em;
   text-transform: uppercase;

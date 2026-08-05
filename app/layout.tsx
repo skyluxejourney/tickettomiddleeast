@@ -1,14 +1,10 @@
 // app/layout.tsx
 import type { Metadata } from 'next';
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 
-// Configure Inter font
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-});
+// Configure montserrat font
+const montserrat = Montserrat({ subsets: ['latin'], display: 'swap', weight: ['300', '400', '500', '600', '700', '800', '900'], });
 
 export const metadata: Metadata = {
   title: 'TicketToMiddleEast | Luxury Travel & Holiday Packages',
@@ -28,7 +24,7 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased">
       <body 
         className="min-h-full bg-white text-gray-900 flex flex-col"
-        style={inter.style} // This applies the font directly
+        style={montserrat.style} // This applies the font directly
       >
         {children}
       </body>
