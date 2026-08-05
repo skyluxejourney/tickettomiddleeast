@@ -3,6 +3,7 @@
 import Image from "next/image";
 import SearchEngine from "@/components/SearchEngine";
 import heroImage from "@/public/images/skyluxe-hero-banner.jpg";
+import { BRAND } from "@/app/constants";
 
 interface AirlineHeroProps {
   airlineName: string;
@@ -11,20 +12,39 @@ interface AirlineHeroProps {
 export default function AirlineHero({ airlineName }: AirlineHeroProps) {
   return (
     <section className="relative min-h-[70vh] flex items-center overflow-hidden pt-20 sm:pt-24">
-      {/* Background Image with Clean Dark Overlay */}
+      {/* Background Image - Aeroplane ready for takeoff */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/herobackground.jpg"
-          alt={`${airlineName} flights - Ticket to Europe`}
+          src="/images/airlineshero.png"
+          alt={`${airlineName} flights - ${BRAND.name}`}
           fill
           className="object-cover object-center"
           priority
           quality={100}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/75" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
-        <div className="absolute inset-0 bg-black/20" />
+        {/* Navy & Gold themed overlay */}
+        <div className="absolute inset-0" style={{
+          background: `linear-gradient(to bottom, #0c0a4aCC, #13116499, #0c0a4aCC)`
+        }} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-black/10" />
+        
+        {/* Gold accent glow */}
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: `radial-gradient(ellipse at 30% 50%, #b7901b33, transparent 70%)`
+          }}
+        />
       </div>
+
+      {/* Decorative Accent Line - Top */}
+      <div 
+        className="absolute top-0 left-0 right-0 z-10 h-1"
+        style={{
+          background: `linear-gradient(to right, #131164, #b7901b, #f5edc8)`
+        }}
+      />
 
       {/* Content - Left Aligned & Full Width */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -32,7 +52,15 @@ export default function AirlineHero({ airlineName }: AirlineHeroProps) {
           <h1 className="mb-4 sm:mb-5">
             <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.2] tracking-tight">
               Need Help With a{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8BCF] via-[#7BAEE0] to-[#4A8BCF] italic whitespace-nowrap">
+              <span 
+                className="text-transparent bg-clip-text italic whitespace-nowrap"
+                style={{
+                  background: `linear-gradient(to right, #b7901b, #f5edc8, #b7901b)`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}
+              >
                 {airlineName}
               </span>
               <span className="text-white"> Airlines</span>
@@ -41,8 +69,8 @@ export default function AirlineHero({ airlineName }: AirlineHeroProps) {
             </span>
           </h1>
 
-          <p className="text-white/80 text-sm sm:text-base md:text-lg w-full mb-6 sm:mb-8 font-light tracking-wide leading-relaxed max-w-none">
-            TickettoEurope is an independent travel agency. Our agents can help you understand {airlineName} Airlines' published change, cancellation, name-correction, and upgrade policies so you can decide on the right next step for your trip.
+          <p className="text-white/80 italic text-sm sm:text-base md:text-lg w-full mb-6 sm:mb-8 font-light tracking-wide leading-relaxed max-w-none">
+            {BRAND.name} is an independent travel agency. Our agents can help you understand {airlineName} Airlines' published change, cancellation, name-correction, and upgrade policies so you can decide on the right next step for your trip.
           </p>
 
           {/* Search Engine Component */}
@@ -51,6 +79,18 @@ export default function AirlineHero({ airlineName }: AirlineHeroProps) {
           </div>
         </div>
       </div>
+
+      {/* Decorative Accent Line - Bottom */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 z-10 h-1"
+        style={{
+          background: `linear-gradient(to right, #f5edc8, #b7901b, #131164)`
+        }}
+      />
+
+      {/* Gold corner accents */}
+      <div className="absolute top-20 left-8 z-10 w-16 h-16 border-t-2 border-l-2 border-[#b7901b]/30" />
+      <div className="absolute top-20 right-8 z-10 w-16 h-16 border-t-2 border-r-2 border-[#b7901b]/30" />
     </section>
   );
 }

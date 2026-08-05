@@ -1,45 +1,19 @@
+// app/layout.tsx
 import type { Metadata } from 'next';
 import './globals.css';
-import { Inter, Plus_Jakarta_Sans, DM_Sans, Outfit } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-// Primary font - Clean, modern sans-serif (similar to Qatar Airways)
-const headingFont = Outfit({
-  variable: '--font-heading',
+// Configure Inter font
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
 });
-
-// Secondary font - Clean body text
-const bodyFont = DM_Sans({
-  variable: '--font-body',
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-});
-
-// Alternative: If you prefer Inter for body
-// const bodyFont = Inter({
-//   variable: '--font-body',
-//   subsets: ['latin'],
-//   display: 'swap',
-// });
 
 export const metadata: Metadata = {
   title: 'TicketToMiddleEast | Luxury Travel & Holiday Packages',
-  description:
-    'Book luxury holiday packages, flights, hotels and customized trips with TicketToMiddleEast.',
-  keywords: [
-    'Skyluxe Journey',
-    'ticket to middle east',
-    'travel agency',
-    'holiday packages',
-    'flights',
-    'hotels',
-    'Dubai package',
-    'Bali package',
-    'Maldives package',
-  ],
+  description: 'Book luxury holiday packages, flights, hotels and customized trips with TicketToMiddleEast.',
+  keywords: ['Skyluxe Journey', 'ticket to middle east', 'travel agency'],
   icons: {
     icon: '/favicon.ico',
   },
@@ -51,11 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${headingFont.variable} ${bodyFont.variable} h-full antialiased`}
-    >
-      <body className="min-h-full bg-white text-gray-900 flex flex-col">
+    <html lang="en" className="h-full antialiased">
+      <body 
+        className="min-h-full bg-white text-gray-900 flex flex-col"
+        style={inter.style} // This applies the font directly
+      >
         {children}
       </body>
     </html>

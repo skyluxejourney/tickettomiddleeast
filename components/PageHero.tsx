@@ -29,6 +29,14 @@ export default function PageHero({
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
+      {/* Decorative Accent Line - Navy & Gold Theme */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 z-10 h-1"
+        style={{
+          background: `linear-gradient(to right, #131164, #b7901b, #f5edc8)`
+        }}
+      />
+
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
@@ -40,6 +48,22 @@ export default function PageHero({
               {subtitle}
             </p>
           )}
+          
+          {/* Optional Decorative Element - Navy & Gold Theme */}
+          <div className="flex items-center justify-center gap-3 mt-6">
+            <span 
+              className="w-12 h-0.5 rounded-full"
+              style={{ backgroundColor: '#b7901b' }}
+            />
+            <span 
+              className="w-2 h-2 rotate-45"
+              style={{ backgroundColor: '#131164' }}
+            />
+            <span 
+              className="w-12 h-0.5 rounded-full"
+              style={{ backgroundColor: '#b7901b' }}
+            />
+          </div>
         </div>
       </div>
     </section>

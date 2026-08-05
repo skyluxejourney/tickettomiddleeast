@@ -2,81 +2,95 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0A1628;
-  --primary: #1A3A6B;
-  --primary-light: #2B5A9E;
-  --primary-dark: #0D1F3C;
-  --accent: #4A8BCF;
-  --accent-light: #7BAEE0;
-  --accent-dark: #2A6B9E;
-  --light-blue: #E8F0FE;
-  --lightest-blue: #F5F9FF;
-  --gray-light: #F8FAFC;
-  --gray-border: #E2E8F0;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-body);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-heading);
-  --font-body: var(--font-body);
+  --foreground: #131164;
+  --primary: #131164;
+  --primary-light: #1e1a8a;
+  --primary-dark: #0c0a4a;
+  --accent: #b7901b;
+  --accent-light: #d4aa2a;
+  --accent-dark: #9a7716;
+  --light-gold: #f5edc8;
+  --lightest-gold: #faf5e6;
+  --gray-light: #f8fafc;
+  --gray-border: #e2e8f0;
+  --dark-navy: #131164;
+  --gold: #b7901b;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0A1628;
-    --foreground: #E8F0FE;
-    --primary: #4A8BCF;
-    --primary-light: #7BAEE0;
-    --primary-dark: #1A3A6B;
-    --accent: #6BA6D8;
-    --accent-light: #9AC4E8;
-    --accent-dark: #3A7AB0;
-    --light-blue: #1A2A4A;
-    --lightest-blue: #0D1F3C;
-    --gray-light: #162238;
-    --gray-border: #2A3A5A;
+    --background: #131164;
+    --foreground: #f5edc8;
+    --primary: #f5edc8;
+    --primary-light: #faf5e6;
+    --primary-dark: #131164;
+    --accent: #b7901b;
+    --accent-light: #d4aa2a;
+    --accent-dark: #9a7716;
+    --light-gold: #1e1a8a;
+    --lightest-gold: #131164;
+    --gray-light: #1e1a8a;
+    --gray-border: #2a258a;
+    --dark-navy: #f5edc8;
+    --gold: #b7901b;
   }
 }
 
-/* Apply fonts globally */
+/* Body uses Inter from layout.tsx style={inter.style} */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Heading font - applies to all heading tags */
+/* Heading font - Inter */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading), 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
   color: var(--primary);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 /* Utility classes for fonts */
 .font-heading {
-  font-family: var(--font-heading), 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .font-body {
-  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-}
-
-/* Override Tailwind's default sans font */
-.font-sans {
-  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 /* ===== CUSTOM SCROLLBAR THEME ===== */
-/* For WebKit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--lightest-blue);
+  background: var(--lightest-gold);
   border-radius: 4px;
 }
 
@@ -90,16 +104,14 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(180deg, var(--accent-light), var(--primary-light));
 }
 
-/* For Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--lightest-blue);
+  scrollbar-color: var(--primary) var(--lightest-gold);
 }
 
-/* Optional: For dark mode scrollbar */
 @media (prefers-color-scheme: dark) {
   ::-webkit-scrollbar-track {
-    background: var(--light-blue);
+    background: var(--light-gold);
   }
   
   ::-webkit-scrollbar-thumb {
@@ -107,11 +119,10 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   * {
-    scrollbar-color: var(--primary-light) var(--light-blue);
+    scrollbar-color: var(--primary-light) var(--light-gold);
   }
 }
 
-/* Hide scrollbar for specific containers (keep functionality) */
 .hide-scrollbar::-webkit-scrollbar {
   width: 0px;
   height: 0px;
@@ -122,14 +133,13 @@ h1, h2, h3, h4, h5, h6 {
   -ms-overflow-style: none;
 }
 
-/* Custom scrollbar for hints dropdowns */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: var(--lightest-blue);
+  background: var(--lightest-gold);
   border-radius: 4px;
 }
 
@@ -144,62 +154,67 @@ h1, h2, h3, h4, h5, h6 {
 
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--lightest-blue);
+  scrollbar-color: var(--primary) var(--lightest-gold);
 }
 
-/* ===== PREMIUM BLUE THEME ADDITIONS ===== */
+/* ===== PREMIUM NAVY & GOLD THEME ADDITIONS ===== */
 
-/* Primary button styles */
 .btn-primary {
   background: linear-gradient(135deg, var(--primary-light), var(--primary));
   color: white;
   border: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(26, 58, 107, 0.3);
+  box-shadow: 0 4px 15px rgba(19, 17, 100, 0.3);
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(26, 58, 107, 0.4);
+  box-shadow: 0 6px 20px rgba(19, 17, 100, 0.4);
   background: linear-gradient(135deg, var(--accent-light), var(--primary-light));
+  color: white;
 }
 
-/* Secondary button styles */
 .btn-secondary {
   background: transparent;
   color: var(--primary);
   border: 2px solid var(--primary);
   transition: all 0.3s ease;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .btn-secondary:hover {
   background: var(--primary);
-  color: white;
+  color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(26, 58, 107, 0.2);
+  box-shadow: 0 4px 15px rgba(19, 17, 100, 0.2);
 }
 
-/* Card styles */
 .card-premium {
   background: var(--background);
   border: 1px solid var(--gray-border);
   border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(26, 58, 107, 0.08);
+  box-shadow: 0 8px 30px rgba(19, 17, 100, 0.08);
   transition: all 0.3s ease;
 }
 
 .card-premium:hover {
-  box-shadow: 0 12px 40px rgba(26, 58, 107, 0.15);
+  box-shadow: 0 12px 40px rgba(19, 17, 100, 0.15);
   transform: translateY(-4px);
   border-color: var(--primary-light);
 }
 
-/* Link styles */
 .link-premium {
   color: var(--primary);
   text-decoration: none;
   position: relative;
   transition: color 0.3s ease;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 500;
 }
 
 .link-premium::after {
@@ -214,53 +229,73 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .link-premium:hover {
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 
 .link-premium:hover::after {
   width: 100%;
 }
 
-/* Gradient text */
-.text-gradient-blue {
+.text-gradient-navy-gold {
   background: linear-gradient(135deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
 }
 
-/* Section backgrounds */
-.bg-blue-premium {
-  background: linear-gradient(135deg, var(--lightest-blue), var(--light-blue));
+.text-gradient-gold-navy {
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+}
+
+.bg-gold-premium {
+  background: linear-gradient(135deg, var(--lightest-gold), var(--light-gold));
+}
+
+.bg-navy-premium {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--accent);
 }
 
 .bg-white-premium {
   background: var(--background);
-  box-shadow: 0 2px 20px rgba(26, 58, 107, 0.06);
+  box-shadow: 0 2px 20px rgba(19, 17, 100, 0.06);
 }
 
-/* Input focus styles */
+.bg-navy-subtle {
+  background: var(--light-gold);
+}
+
+.bg-navy-light {
+  background: var(--lightest-gold);
+}
+
 input:focus, textarea:focus, select:focus {
   border-color: var(--primary) !important;
-  box-shadow: 0 0 0 3px rgba(26, 58, 107, 0.15) !important;
+  box-shadow: 0 0 0 3px rgba(19, 17, 100, 0.15) !important;
   outline: none;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Selection color */
 ::selection {
   background: var(--primary);
-  color: white;
+  color: var(--accent);
 }
 
 ::-moz-selection {
   background: var(--primary);
-  color: white;
+  color: var(--accent);
 }
 
-/* Loading spinner */
-.spinner-blue {
-  border: 3px solid var(--lightest-blue);
-  border-top: 3px solid var(--primary);
+.spinner-navy-gold {
+  border: 3px solid var(--lightest-gold);
+  border-top: 3px solid var(--accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -268,4 +303,112 @@ input:focus, textarea:focus, select:focus {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.text-dark-navy {
+  color: var(--dark-navy);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.bg-dark-navy {
+  background-color: var(--dark-navy);
+}
+
+.bg-gold {
+  background-color: var(--gold);
+}
+
+.border-accent {
+  border-color: var(--accent);
+}
+
+.border-dark-navy {
+  border-color: var(--dark-navy);
+}
+
+.hover\:bg-accent:hover {
+  background-color: var(--accent);
+}
+
+.hover\:text-accent:hover {
+  color: var(--accent);
+}
+
+.hover\:bg-dark-navy:hover {
+  background-color: var(--dark-navy);
+}
+
+.hover\:text-dark-navy:hover {
+  color: var(--dark-navy);
+}
+
+/* Inter style typography */
+.inter-heading {
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.inter-subheading {
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.inter-body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.inter-small {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.inter-button {
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.inter-nav {
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.inter-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
 }
