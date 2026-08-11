@@ -15,7 +15,7 @@ export const kuwaitAirwaysData = {
     reviews: 876,
     highlights: ["Royal Class", "Business Class", "Economy Class", "Kuwait Airways Rewards"],
     phoneNumber: "18663722767",
-    email: "support@kuwaitairways.com",
+    email: "Reservations@tickettomiddleeast.com",
   },
   metadata: {
     title: "Kuwait Airways Flight Change, Cancellation & Upgrades",

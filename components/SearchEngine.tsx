@@ -437,7 +437,7 @@ export default function SearchEngine() {
               setShowDepartCalendar(!showDepartCalendar);
               setShowReturnCalendar(false);
             }}
-            className="w-full lg:w-45 bg-[#faf5e6] border pl-10 pr-8 py-3 text-left focus:outline-none transition-all duration-300 text-sm h-[52px]"
+            className="w-full lg:w-46 bg-[#faf5e6] border pl-10 pr-8 py-3 text-left focus:outline-none transition-all duration-300 text-sm h-[52px]"
             style={{
               borderColor: '#e2e8f0',
               color: '#0c0a4a',

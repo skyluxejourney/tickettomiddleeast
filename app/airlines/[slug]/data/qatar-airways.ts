@@ -15,7 +15,7 @@ export const qatarAirwaysData = {
     reviews: 2543,
     highlights: ["Qsuite", "Business Class", "Economy Class", "First Class", "Privilege Club"],
     phoneNumber: "18778099955",
-    email: "support@qatarairways.com",
+    email: "Reservations@tickettomiddleeast.com",
   },
   metadata: {
     title: "Qatar Airways Flight Change, Cancellation & Upgrades",

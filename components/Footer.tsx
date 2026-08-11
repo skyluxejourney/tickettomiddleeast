@@ -21,14 +21,29 @@ export default function Footer() {
   const [showModal, setShowModal] = useState(false);
   const [selectedLink, setSelectedLink] = useState("");
 
+  // 1. Quick Links (Updated)
   const quickLinks = [
-    { name: "About Us", href: "#" },
-    { name: "Flights", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Disclaimer", href: "/disclaimer" },
+    { name: "Contact Us", href: "#", isModal: true },
+    { name: "Site Map", href: "/sitemap" },
   ];
 
-  // Helper function to generate slug from airline name - with safety check
+  // 2. Legal Links (Added)
+  const legalLinks = [
+    { name: "Terms & Condition", href: "/terms-of-service" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Price Match Promise", href: "/price-match-policy" },
+    { name: "Fulfillment Policy", href: "/fulfillment-policy" },
+    { name: "Fare Disclosure", href: "/fare-disclosure-policy" },
+    { name: "Advertiser Disclosure", href: "/advertiser-disclosure-policy" },
+    { name: "Cookies Policy", href: "/cookies" },
+    { name: "Cancellation and Refund", href: "/cancellation-refund-policy" },
+    { name: "Taxes and Fees", href: "/taxes-fees" },
+  ];
+
+  // Helper function to generate slug from airline name
   function getSlugFromName(name: string): string {
     if (!name || typeof name !== 'string') return "";
     return name
@@ -40,17 +55,19 @@ export default function Footer() {
   // Get top airlines from the airlinesDataMap - limit to 7 for display
   const allAirlines = Object.values(airlinesDataMap);
   const topAirlines = allAirlines
-    .filter((airline: AirlineData) => airline.airline?.name) // Filter out any with undefined name
+    .filter((airline: AirlineData) => airline.airline?.name)
     .slice(0, 7)
     .map((airline: AirlineData) => ({
       name: airline.airline.name,
       slug: getSlugFromName(airline.airline.name)
     }));
 
-  const handleLinkClick = (e: React.MouseEvent, linkName: string) => {
-    e.preventDefault();
-    setSelectedLink(linkName);
-    setShowModal(true);
+  const handleLinkClick = (e: React.MouseEvent, linkName: string, isModal?: boolean) => {
+    if (isModal) {
+      e.preventDefault();
+      setSelectedLink(linkName);
+      setShowModal(true);
+    }
   };
 
   const closeModal = () => {
@@ -63,8 +80,10 @@ export default function Footer() {
       <footer className="text-[#0c0a4a]/80" style={{ backgroundColor: '#faf5e6' }}>
         {/* Main Footer */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+          {/* 4 Columns: Brand, Quick Links, Top Airlines, Legal Links */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
-            {/* Brand & About */}
+            
+            {/* 1. Brand & About */}
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex-shrink-0">
@@ -101,7 +120,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Quick Links */}
+            {/* 2. Quick Links */}
             <div>
               <h3 className="font-semibold text-lg mb-4 relative" style={{ color: '#0c0a4a' }}>
                 Quick Links
@@ -115,26 +134,60 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(e, link.name)}
-                      className="text-sm transition-colors duration-200 flex items-center gap-2 group cursor-pointer"
-                      style={{ color: '#0c0a4a99' }}
-                    >
-                      <span 
-                        className="w-1 h-1 rounded-full transition-colors"
-                        style={{ 
-                          backgroundColor: '#13116466',
+                    {link.isModal ? (
+                      <a
+                        href={link.href}
+                        onClick={(e) => handleLinkClick(e, link.name, true)}
+                        className="text-sm transition-colors duration-200 flex items-center gap-2 group cursor-pointer"
+                        style={{ color: '#0c0a4a99' }}
+                      >
+                        <span 
+                          className="w-1 h-1 rounded-full transition-colors"
+                          style={{ 
+                            backgroundColor: '#13116466',
+                          }}
+                        />
+                        {link.name}
+                      </a>
+                    ) : link.name === "Home" ? (
+                      <a
+                        href={link.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                      />
-                      {link.name}
-                    </a>
+                        className="text-sm transition-colors duration-200 flex items-center gap-2 group cursor-pointer"
+                        style={{ color: '#0c0a4a99' }}
+                      >
+                        <span 
+                          className="w-1 h-1 rounded-full transition-colors"
+                          style={{ 
+                            backgroundColor: '#13116466',
+                          }}
+                        />
+                        {link.name}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm transition-colors duration-200 flex items-center gap-2 group"
+                        style={{ color: '#0c0a4a99' }}
+                      >
+                        <span 
+                          className="w-1 h-1 rounded-full transition-colors"
+                          style={{ 
+                            backgroundColor: '#13116466',
+                          }}
+                        />
+                        {link.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Top Airlines */}
+            {/* 3. Top Airlines (Unchanged) */}
             <div>
               <h3 className="font-semibold text-lg mb-4 relative" style={{ color: '#0c0a4a' }}>
                 Top Airlines
@@ -166,10 +219,10 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Contact Us */}
+            {/* 4. Legal Links (New Column Added) */}
             <div>
               <h3 className="font-semibold text-lg mb-4 relative" style={{ color: '#0c0a4a' }}>
-                Contact Us
+                Legal
                 <span 
                   className="absolute -bottom-1 left-0 w-8 h-0.5 rounded-full"
                   style={{
@@ -177,23 +230,24 @@ export default function Footer() {
                   }}
                 />
               </h3>
-              <ul className="space-y-3.5">
-                <li className="flex items-start gap-3 text-sm transition-colors group" style={{ color: '#0c0a4a99' }}>
-                  <Phone size={16} className="flex-shrink-0 mt-0.5 transition-transform" style={{ color: '#131164' }} />
-                  <span>{CONTACT.phone || "+1 (855) 764-0399"}</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm transition-colors group" style={{ color: '#0c0a4a99' }}>
-                  <Mail size={16} className="flex-shrink-0 mt-0.5 transition-transform" style={{ color: '#131164' }} />
-                  <span>{COMPANY.email || "support@tickettomiddleeast.com"}</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm transition-colors group" style={{ color: '#0c0a4a99' }}>
-                  <MapPin size={16} className="flex-shrink-0 mt-0.5 transition-transform" style={{ color: '#131164' }} />
-                  <span>{COMPANY.address || "Dubai, UAE"}</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm transition-colors group" style={{ color: '#0c0a4a99' }}>
-                  <Clock size={16} className="flex-shrink-0 mt-0.5 transition-transform" style={{ color: '#131164' }} />
-                  <span>{CONTACT.supportHours || "24/7 Support"}</span>
-                </li>
+              <ul className="space-y-2.5">
+                {legalLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="text-sm transition-colors duration-200 flex items-center gap-2 group"
+                      style={{ color: '#0c0a4a99' }}
+                    >
+                      <span 
+                        className="w-1 h-1 rounded-full transition-colors"
+                        style={{ 
+                          backgroundColor: '#13116466',
+                        }}
+                      />
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -242,17 +296,17 @@ export default function Footer() {
                 &copy; {COMPANY.year || new Date().getFullYear()} {COMPANY.name || BRAND.name}. All rights reserved.
               </p>
               <div className="flex items-center gap-4">
-                <a href="#" className="transition-colors" style={{ color: '#0c0a4a40' }}>
+                <Link href="/privacy-policy" className="transition-colors" style={{ color: '#0c0a4a40' }}>
                   Privacy Policy
-                </a>
+                </Link>
                 <span className="w-px h-3" style={{ backgroundColor: '#1311641A' }} />
-                <a href="#" className="transition-colors" style={{ color: '#0c0a4a40' }}>
+                <Link href="/terms-of-service" className="transition-colors" style={{ color: '#0c0a4a40' }}>
                   Terms of Service
-                </a>
+                </Link>
                 <span className="w-px h-3" style={{ backgroundColor: '#1311641A' }} />
-                <a href="#" className="transition-colors" style={{ color: '#0c0a4a40' }}>
+                <Link href="/cookies" className="transition-colors" style={{ color: '#0c0a4a40' }}>
                   Cookie Policy
-                </a>
+                </Link>
               </div>
             </div>
           </div>

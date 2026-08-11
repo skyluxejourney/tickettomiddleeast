@@ -15,7 +15,7 @@ export const etihadAirwaysData = {
     reviews: 2134,
     highlights: ["The Residence", "First Class", "Business Class", "Economy Class", "Etihad Guest"],
     phoneNumber: "18557391017",
-    email: "support@etihad.com",
+    email: "Reservations@tickettomiddleeast.com",
   },
   metadata: {
     title: "Etihad Airways Flight Change, Cancellation & Upgrades",

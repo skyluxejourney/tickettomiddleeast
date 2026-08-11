@@ -15,7 +15,7 @@ export const emiratesData = {
     reviews: 2890,
     highlights: ["First Class", "Business Class", "Premium Economy", "Economy Class", "Skywards"],
     phoneNumber: "18557640399",
-    email: "support@emirates.com",
+    email: "Reservations@tickettomiddleeast.com",
   },
   metadata: {
     title: "Emirates Flight Change, Cancellation & Upgrades",
