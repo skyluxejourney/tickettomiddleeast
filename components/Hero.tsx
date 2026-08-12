@@ -15,19 +15,17 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20 sm:pt-24">
-      {/* Background Image - Full Size with Gradient Bottom */}
+      {/* Background Image - Full Size with No Gradient Bottom */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/heroimage.png"
+          src="/images/planebackground.png"
           alt="Ticket to Middle East - Travel Experiences"
           fill
           className="object-cover object-center"
           priority
-          quality={100}
+
         />
-        {/* Gradient Bottom - Smooth Transition to Next Section */}
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white via-white/80 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-white via-white/60 to-transparent" />
+        {/* Removed gradient overlays to show full image */}
       </div>
 
       {/* Content */}
