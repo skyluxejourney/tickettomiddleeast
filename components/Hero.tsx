@@ -18,7 +18,7 @@ export default function Hero() {
       {/* Background Image - Full Size with Gradient Bottom */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/herobackgr.png"
+          src="/images/heroimage.png"
           alt="Ticket to Middle East - Travel Experiences"
           fill
           className="object-cover object-center"
