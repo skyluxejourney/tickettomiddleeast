@@ -158,7 +158,7 @@ export default function ExclusiveDealsPoster() {
             {/* Right Image - Warm travel image that aligns with navy/gold theme */}
             <div className="relative lg:w-1/2 min-h-[250px] sm:min-h-[300px] lg:min-h-[350px] xl:min-h-[400px]">
               <img
-                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&crop=center"
+                src="/images/exclusiveimage.jpg"
                 alt="Exclusive Travel Deals"
                 className="w-full h-full object-cover"
               />
