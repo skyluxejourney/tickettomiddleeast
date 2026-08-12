@@ -3,7 +3,7 @@
 import SearchEngine from "./SearchEngine";
 import Image from "next/image";
 import { Phone, Headphones } from "lucide-react";
-import { CONTACT } from "@/app/constants";
+import { CONTACT, BRAND } from "@/app/constants";
 import { useEffect, useState } from "react";
 
 export default function Hero() {
@@ -15,29 +15,107 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20 sm:pt-24">
-      {/* Background Image - Full Size with No Gradient Bottom */}
+      {/* Background Image - Mobile vs Desktop */}
       <div className="absolute inset-0 z-0">
+        {/* Desktop Image - Visible on desktop, hidden on mobile */}
         <Image
           src="/images/planebackground.png"
           alt="Ticket to Middle East - Travel Experiences"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center hidden md:block"
           priority
-
+          quality={100}
         />
-        {/* Removed gradient overlays to show full image */}
+        {/* Mobile Image - Visible only on mobile */}
+        <Image
+          src="/images/herobackgroundnavy.jpg"
+          alt="Ticket to Middle East - Travel Experiences"
+          fill
+          className="object-cover object-center block md:hidden"
+          priority
+          quality={100}
+        />
+        
+        {/* Dark Overlay - Mobile Only */}
+        <div className="absolute inset-0 block md:hidden" style={{
+          background: `linear-gradient(to bottom, rgba(12, 10, 74, 0.6), rgba(19, 17, 100, 0.5), rgba(12, 10, 74, 0.7))`
+        }} />
+        
+        {/* Removed gradient overlays to show full image on desktop */}
       </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="max-w-6xl mx-auto text-center">
-          {/* Search Engine Component - Positioned Lower with More Top Margin */}
+          
+          {/* Mobile Only Heading - Visible only on mobile screens */}
           <div 
-            className={`relative z-20 mt-32 sm:mt-48 md:mt-56 lg:mt-68 transition-all duration-1000 ease-out ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            className={`block md:hidden transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '200ms' }}
+          >
+            <h1 className="text-2xl sm:text-3xl font-bold text-white leading-[1.2] tracking-tight mb-2">
+              <span className="text-white">Discover the World's</span>
+              <br />
+              <span 
+                className="text-transparent bg-clip-text italic"
+                style={{
+                  background: `linear-gradient(to right, #b7901b, #f5edc8, #b7901b)`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}
+              >
+                Best Travel Experiences
+              </span>
+            </h1>
+          </div>
+
+          {/* Mobile Only Subtitle - Visible only on mobile screens */}
+          <div 
+            className={`block md:hidden transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
             style={{ transitionDelay: '300ms' }}
           >
+            <p className="text-white/90 text-xs sm:text-sm max-w-md mx-auto mb-3 font-light tracking-wide leading-relaxed">
+              Curated luxury journeys to the most breathtaking destinations.
+              <br />
+              Let us craft your perfect escape.
+            </p>
+          </div>
+
+          {/* Search Engine Component - Different positioning for mobile vs desktop */}
+          <div 
+            className={`relative z-20 transition-all duration-1000 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
+            style={{ 
+              transitionDelay: '300ms',
+              marginTop: 'var(--search-margin-top)'
+            }}
+          >
+            <style jsx>{`
+              div[style*="--search-margin-top"] {
+                --search-margin-top: 4rem; /* Default for mobile */
+              }
+              @media (min-width: 640px) {
+                div[style*="--search-margin-top"] {
+                  --search-margin-top: 6rem;
+                }
+              }
+              @media (min-width: 768px) {
+                div[style*="--search-margin-top"] {
+                  --search-margin-top: 14rem;
+                }
+              }
+              @media (min-width: 1024px) {
+                div[style*="--search-margin-top"] {
+                  --search-margin-top: 17rem;
+                }
+              }
+            `}</style>
             <SearchEngine />
           </div>
         </div>
