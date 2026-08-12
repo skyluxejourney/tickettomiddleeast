@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Enable static export to generate 'out' folder
+  output: 'export',
 };
 
 export default nextConfig;
