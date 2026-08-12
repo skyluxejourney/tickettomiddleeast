@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Plane,
   MapPin,
@@ -46,6 +46,11 @@ interface Deal {
 export default function TravelDealsSection() {
   const [selectedDeal, setSelectedDeal] = useState<Deal | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const deals: Deal[] = [
     {
@@ -175,8 +180,16 @@ export default function TravelDealsSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Heading - Left Aligned */}
-          <div className="mb-6 sm:mb-8">
-            <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4" style={{ backgroundColor: '#f5edc8' }}>
+          <div 
+            className={`mb-6 sm:mb-8 transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '100ms' }}
+          >
+            <div 
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4 transition-all duration-300 hover:scale-105 hover:shadow-md" 
+              style={{ backgroundColor: '#f5edc8' }}
+            >
               <Tag size={16} style={{ color: '#131164' }} />
               <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase" style={{ color: '#131164' }}>
                 Limited Time Offers
@@ -185,7 +198,7 @@ export default function TravelDealsSection() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight" style={{ color: '#0c0a4a' }}>
               Travel Deals Under{" "}
               <span 
-                className="text-transparent bg-clip-text"
+                className="text-transparent bg-clip-text transition-all duration-300 hover:bg-gradient-to-r hover:from-[#b7901b] hover:to-[#131164]"
                 style={{
                   background: `linear-gradient(to right, #131164, #b7901b)`,
                   WebkitBackgroundClip: 'text',
@@ -196,7 +209,7 @@ export default function TravelDealsSection() {
               </span>
             </h2>
             <div 
-              className="w-12 h-1 rounded-full mt-3"
+              className="w-12 h-1 rounded-full mt-3 transition-all duration-500 hover:w-20"
               style={{
                 background: `linear-gradient(to right, #131164, #b7901b)`
               }}
@@ -204,7 +217,12 @@ export default function TravelDealsSection() {
           </div>
 
           {/* Content Description - Left Aligned */}
-          <div className="mb-8 sm:mb-10 max-w-full">
+          <div 
+            className={`mb-8 sm:mb-10 max-w-full transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '200ms' }}
+          >
             <p className="text-base sm:text-lg leading-relaxed" style={{ color: '#0c0a4aB3' }}>
               Discover amazing getaways without breaking the bank! Find travel
               deals under $158 to top destinations worldwide. Enjoy smooth
@@ -215,12 +233,15 @@ export default function TravelDealsSection() {
 
           {/* Deals Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {deals.map((deal) => (
+            {deals.map((deal, index) => (
               <div
                 key={deal.id}
-                className="group bg-white overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col border"
+                className={`group bg-white overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ease-out hover:-translate-y-2 flex flex-col border ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
                 style={{
                   borderColor: '#e2e8f0',
+                  transitionDelay: `${300 + index * 80}ms`,
                 }}
               >
                 {/* Image */}
@@ -233,14 +254,14 @@ export default function TravelDealsSection() {
                   <div className="absolute inset-0 bg-gradient-to-t" style={{ background: `linear-gradient(to top, #0c0a4aB3, transparent)` }} />
                   
                   {/* Tag */}
-                  <div className="absolute top-3 left-3 text-white text-xs font-bold px-3 py-1.5" style={{
+                  <div className="absolute top-3 left-3 text-white text-xs font-bold px-3 py-1.5 transition-all duration-300 hover:scale-105" style={{
                     background: `linear-gradient(to right, #131164, #1e1a8a)`
                   }}>
                     {deal.tag}
                   </div>
 
                   {/* Price */}
-                  <div className="absolute bottom-3 right-3 backdrop-blur-sm px-3 py-1.5" style={{ backgroundColor: '#0c0a4aCC' }}>
+                  <div className="absolute bottom-3 right-3 backdrop-blur-sm px-3 py-1.5 transition-all duration-300 hover:scale-105" style={{ backgroundColor: '#0c0a4aCC' }}>
                     <div className="text-white font-bold text-lg">{deal.price}</div>
                     <div className="text-white/60 text-xs line-through">
                       {deal.originalPrice}
@@ -248,7 +269,7 @@ export default function TravelDealsSection() {
                   </div>
 
                   {/* Rating */}
-                  <div className="absolute bottom-3 left-3 flex items-center gap-1 backdrop-blur-sm px-3 py-1" style={{ backgroundColor: '#0c0a4a99' }}>
+                  <div className="absolute bottom-3 left-3 flex items-center gap-1 backdrop-blur-sm px-3 py-1 transition-all duration-300 hover:scale-105" style={{ backgroundColor: '#0c0a4a99' }}>
                     <Star size={12} className="text-yellow-400 fill-yellow-400" />
                     <span className="text-white text-xs font-semibold">{deal.rating}</span>
                     <span className="text-white/60 text-xs">({deal.reviews})</span>
@@ -257,7 +278,7 @@ export default function TravelDealsSection() {
 
                 {/* Content */}
                 <div className="p-4 flex-1 flex flex-col">
-                  <h3 className="text-base font-bold mb-2 line-clamp-1" style={{ color: '#0c0a4a' }}>
+                  <h3 className="text-base font-bold mb-2 line-clamp-1 transition-colors duration-300 group-hover:text-[#b7901b]" style={{ color: '#0c0a4a' }}>
                     {deal.title}
                   </h3>
 
@@ -300,7 +321,7 @@ export default function TravelDealsSection() {
                     {deal.amenities.slice(0, 2).map((item, index) => (
                       <span
                         key={index}
-                        className="text-xs px-2 py-0.5"
+                        className="text-xs px-2 py-0.5 transition-all duration-300 hover:scale-105"
                         style={{
                           backgroundColor: '#faf5e6',
                           color: '#0c0a4a99'
@@ -310,7 +331,7 @@ export default function TravelDealsSection() {
                       </span>
                     ))}
                     {deal.amenities.length > 2 && (
-                      <span className="text-xs font-medium" style={{ color: '#131164' }}>
+                      <span className="text-xs font-medium transition-all duration-300 hover:text-[#b7901b]" style={{ color: '#131164' }}>
                         +{deal.amenities.length - 2} more
                       </span>
                     )}
@@ -319,14 +340,14 @@ export default function TravelDealsSection() {
                   {/* Book Now Button */}
                   <button
                     onClick={() => handleBookNow(deal)}
-                    className="w-full text-white font-semibold py-2 transition-all duration-300 flex items-center justify-center gap-2 text-sm mt-auto shadow-lg"
+                    className="w-full text-white font-semibold py-2 transition-all duration-300 flex items-center justify-center gap-2 text-sm mt-auto shadow-lg hover:scale-105 hover:shadow-xl active:scale-95 group/btn"
                     style={{
                       background: `linear-gradient(to right, #131164, #1e1a8a)`,
                       boxShadow: `0 10px 15px -3px #13116433`
                     }}
                   >
                     <span>Book Now</span>
-                    <ArrowRight size={14} />
+                    <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform duration-300" />
                   </button>
                 </div>
               </div>
@@ -340,7 +361,7 @@ export default function TravelDealsSection() {
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
           {/* Overlay */}
           <div
-            className="absolute inset-0 backdrop-blur-sm"
+            className="absolute inset-0 backdrop-blur-sm animate-in fade-in duration-300"
             style={{ backgroundColor: '#0c0a4a99' }}
             onClick={closeModal}
           />
@@ -350,7 +371,7 @@ export default function TravelDealsSection() {
             {/* Close Button */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 transition-colors z-10"
+              className="absolute top-4 right-4 transition-all duration-300 hover:scale-110 hover:rotate-90 z-10"
               style={{ color: '#0c0a4a66' }}
             >
               <X size={24} />
@@ -361,7 +382,7 @@ export default function TravelDealsSection() {
               background: `linear-gradient(to right, #131164, #1e1a8a)`
             }}>
               <div className="flex items-center gap-3">
-                <div className="bg-white/20 p-2">
+                <div className="bg-white/20 p-2 animate-pulse">
                   <Plane size={20} />
                 </div>
                 <div>
@@ -378,7 +399,7 @@ export default function TravelDealsSection() {
             {/* Content */}
             <div className="p-6">
               {/* Deal Summary */}
-              <div className="p-4 mb-6" style={{ backgroundColor: '#faf5e6' }}>
+              <div className="p-4 mb-6 transition-all duration-300 hover:shadow-md" style={{ backgroundColor: '#faf5e6' }}>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm" style={{ color: '#0c0a4a99' }}>Destination</span>
                   <span className="text-sm font-semibold" style={{ color: '#0c0a4a' }}>
@@ -387,7 +408,7 @@ export default function TravelDealsSection() {
                 </div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm" style={{ color: '#0c0a4a99' }}>Price</span>
-                  <span className="text-lg font-bold" style={{ color: '#131164' }}>
+                  <span className="text-lg font-bold animate-pulse" style={{ color: '#131164' }}>
                     {selectedDeal.price}
                   </span>
                 </div>
@@ -407,8 +428,8 @@ export default function TravelDealsSection() {
                 
                 <div className="space-y-3">
                   {/* Phone */}
-                  <div className="flex items-center gap-4 p-3 transition-colors" style={{ backgroundColor: '#faf5e6' }}>
-                    <div className="p-2 text-white" style={{
+                  <div className="flex items-center gap-4 p-3 transition-all duration-300 hover:shadow-md hover:scale-[1.02]" style={{ backgroundColor: '#faf5e6' }}>
+                    <div className="p-2 text-white transition-all duration-300 hover:scale-110" style={{
                       background: `linear-gradient(to right, #131164, #1e1a8a)`
                     }}>
                       <Phone size={18} />
@@ -417,7 +438,7 @@ export default function TravelDealsSection() {
                       <p className="text-xs" style={{ color: '#0c0a4a99' }}>Call Us Now</p>
                       <a
                         href={`tel:${CONTACT.phoneRaw}`}
-                        className="text-sm font-semibold transition-colors"
+                        className="text-sm font-semibold transition-colors duration-300 hover:text-[#b7901b]"
                         style={{ color: '#0c0a4a' }}
                       >
                         {CONTACT.phone}
@@ -426,8 +447,8 @@ export default function TravelDealsSection() {
                   </div>
 
                   {/* Email */}
-                  <div className="flex items-center gap-4 p-3 transition-colors" style={{ backgroundColor: '#faf5e6' }}>
-                    <div className="p-2 text-white" style={{
+                  <div className="flex items-center gap-4 p-3 transition-all duration-300 hover:shadow-md hover:scale-[1.02]" style={{ backgroundColor: '#faf5e6' }}>
+                    <div className="p-2 text-white transition-all duration-300 hover:scale-110" style={{
                       background: `linear-gradient(to right, #131164, #1e1a8a)`
                     }}>
                       <Mail size={18} />
@@ -436,7 +457,7 @@ export default function TravelDealsSection() {
                       <p className="text-xs" style={{ color: '#0c0a4a99' }}>Email Us</p>
                       <a
                         href={`mailto:${COMPANY.email}`}
-                        className="text-sm font-semibold transition-colors"
+                        className="text-sm font-semibold transition-colors duration-300 hover:text-[#b7901b]"
                         style={{ color: '#0c0a4a' }}
                       >
                         {COMPANY.email}
@@ -446,7 +467,7 @@ export default function TravelDealsSection() {
                 </div>
 
                 {/* Special Request Note */}
-                <div className="mt-4 p-3 border" style={{
+                <div className="mt-4 p-3 border transition-all duration-300 hover:scale-[1.02]" style={{
                   backgroundColor: '#f5edc8',
                   borderColor: '#b7901b33'
                 }}>
@@ -459,19 +480,19 @@ export default function TravelDealsSection() {
                 <div className="flex gap-3 mt-4">
                   <a
                     href={`tel:${CONTACT.phoneRaw}`}
-                    className="flex-1 text-white font-semibold py-3 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
+                    className="flex-1 text-white font-semibold py-3 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:scale-105 hover:shadow-xl active:scale-95"
                     style={{
                       background: `linear-gradient(to right, #131164, #1e1a8a)`,
                       boxShadow: `0 10px 15px -3px #13116433`,
                       color: '#ffffff'
                     }}
                   >
-                    <Phone size={16} className="text-white" />
+                    <Phone size={16} className="text-white animate-pulse" />
                     <span className="text-white">Call Now</span>
                   </a>
                   <button
                     onClick={closeModal}
-                    className="flex-1 font-semibold py-3 transition-colors"
+                    className="flex-1 font-semibold py-3 transition-all duration-300 hover:scale-105 active:scale-95"
                     style={{
                       backgroundColor: '#faf5e6',
                       color: '#0c0a4a'

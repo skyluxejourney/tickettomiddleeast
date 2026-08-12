@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Phone,
   Mail,
@@ -20,6 +20,11 @@ import type { AirlineData } from "@/app/airlines/[slug]/airlines-data";
 export default function Footer() {
   const [showModal, setShowModal] = useState(false);
   const [selectedLink, setSelectedLink] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   // 1. Quick Links (Updated)
   const quickLinks = [
@@ -77,16 +82,26 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="text-[#0c0a4a]/80" style={{ backgroundColor: '#faf5e6' }}>
+      <footer 
+        className={`text-[#0c0a4a]/80 transition-all duration-1000 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}
+        style={{ backgroundColor: '#faf5e6' }}
+      >
         {/* Main Footer */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
           {/* 4 Columns: Brand, Quick Links, Top Airlines, Legal Links */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
             
             {/* 1. Brand & About */}
-            <div>
+            <div 
+              className={`transition-all duration-700 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: '100ms' }}
+            >
               <div className="flex items-center gap-3 mb-4">
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 transition-transform duration-300 hover:scale-110">
                   <Image
                     src="/logo/ticketlogo.png"
                     alt={BRAND.name}
@@ -96,7 +111,7 @@ export default function Footer() {
                   />
                 </div>
                 <div>
-                  <h2 className="font-bold tracking-wide font-heading italic" style={{ color: '#0c0a4a', fontSize: 'clamp(0.9rem, 1.2vw, 1.1rem)' }}>
+                  <h2 className="font-bold tracking-wide font-heading italic transition-colors duration-300 hover:text-[#b7901b]" style={{ color: '#0c0a4a', fontSize: 'clamp(0.9rem, 1.2vw, 1.1rem)' }}>
                     {BRAND.name}
                   </h2>
                   <p className="text-[10px] font-medium tracking-wider uppercase" style={{ color: '#131164' }}>
@@ -109,11 +124,11 @@ export default function Footer() {
                 you discover the world with ease and comfort.
               </p>
               <div className="flex items-center gap-3 text-sm" style={{ color: '#0c0a4a99' }}>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 transition-all duration-300 hover:scale-105 hover:text-[#131164]">
                   <Award size={14} style={{ color: '#131164' }} />
                   <span>5 Years of Trust</span>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 transition-all duration-300 hover:scale-105 hover:text-[#131164]">
                   <Shield size={14} style={{ color: '#131164' }} />
                   <span>Secure Booking</span>
                 </div>
@@ -121,33 +136,46 @@ export default function Footer() {
             </div>
 
             {/* 2. Quick Links */}
-            <div>
+            <div 
+              className={`transition-all duration-700 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: '200ms' }}
+            >
               <h3 className="font-semibold text-lg mb-4 relative" style={{ color: '#0c0a4a' }}>
                 Quick Links
                 <span 
-                  className="absolute -bottom-1 left-0 w-8 h-0.5 rounded-full"
+                  className="absolute -bottom-1 left-0 w-8 h-0.5 rounded-full transition-all duration-500 group-hover:w-12"
                   style={{
                     background: `linear-gradient(to right, #131164, #b7901b)`
                   }}
                 />
               </h3>
               <ul className="space-y-2.5">
-                {quickLinks.map((link) => (
-                  <li key={link.name}>
+                {quickLinks.map((link, index) => (
+                  <li 
+                    key={link.name}
+                    className={`transition-all duration-500 ease-out ${
+                      isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+                    }`}
+                    style={{ transitionDelay: `${300 + index * 50}ms` }}
+                  >
                     {link.isModal ? (
                       <a
                         href={link.href}
                         onClick={(e) => handleLinkClick(e, link.name, true)}
-                        className="text-sm transition-colors duration-200 flex items-center gap-2 group cursor-pointer"
+                        className="text-sm transition-all duration-300 flex items-center gap-2 group cursor-pointer hover:translate-x-1"
                         style={{ color: '#0c0a4a99' }}
                       >
                         <span 
-                          className="w-1 h-1 rounded-full transition-colors"
+                          className="w-1 h-1 rounded-full transition-all duration-300 group-hover:w-2 group-hover:bg-[#b7901b]"
                           style={{ 
                             backgroundColor: '#13116466',
                           }}
                         />
-                        {link.name}
+                        <span className="group-hover:text-[#131164] transition-colors duration-300">
+                          {link.name}
+                        </span>
                       </a>
                     ) : link.name === "Home" ? (
                       <a
@@ -156,30 +184,34 @@ export default function Footer() {
                           e.preventDefault();
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className="text-sm transition-colors duration-200 flex items-center gap-2 group cursor-pointer"
+                        className="text-sm transition-all duration-300 flex items-center gap-2 group cursor-pointer hover:translate-x-1"
                         style={{ color: '#0c0a4a99' }}
                       >
                         <span 
-                          className="w-1 h-1 rounded-full transition-colors"
+                          className="w-1 h-1 rounded-full transition-all duration-300 group-hover:w-2 group-hover:bg-[#b7901b]"
                           style={{ 
                             backgroundColor: '#13116466',
                           }}
                         />
-                        {link.name}
+                        <span className="group-hover:text-[#131164] transition-colors duration-300">
+                          {link.name}
+                        </span>
                       </a>
                     ) : (
                       <Link
                         href={link.href}
-                        className="text-sm transition-colors duration-200 flex items-center gap-2 group"
+                        className="text-sm transition-all duration-300 flex items-center gap-2 group hover:translate-x-1"
                         style={{ color: '#0c0a4a99' }}
                       >
                         <span 
-                          className="w-1 h-1 rounded-full transition-colors"
+                          className="w-1 h-1 rounded-full transition-all duration-300 group-hover:w-2 group-hover:bg-[#b7901b]"
                           style={{ 
                             backgroundColor: '#13116466',
                           }}
                         />
-                        {link.name}
+                        <span className="group-hover:text-[#131164] transition-colors duration-300">
+                          {link.name}
+                        </span>
                       </Link>
                     )}
                   </li>
@@ -187,64 +219,90 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* 3. Top Airlines (Unchanged) */}
-            <div>
+            {/* 3. Top Airlines */}
+            <div 
+              className={`transition-all duration-700 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: '300ms' }}
+            >
               <h3 className="font-semibold text-lg mb-4 relative" style={{ color: '#0c0a4a' }}>
                 Top Airlines
                 <span 
-                  className="absolute -bottom-1 left-0 w-8 h-0.5 rounded-full"
+                  className="absolute -bottom-1 left-0 w-8 h-0.5 rounded-full transition-all duration-500 group-hover:w-12"
                   style={{
                     background: `linear-gradient(to right, #131164, #b7901b)`
                   }}
                 />
               </h3>
               <ul className="space-y-2.5">
-                {topAirlines.map((airline) => (
-                  <li key={airline.name}>
+                {topAirlines.map((airline, index) => (
+                  <li 
+                    key={airline.name}
+                    className={`transition-all duration-500 ease-out ${
+                      isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+                    }`}
+                    style={{ transitionDelay: `${400 + index * 50}ms` }}
+                  >
                     <Link
                       href={`/airlines/${airline.slug}`}
-                      className="text-sm transition-colors duration-200 flex items-center gap-2 group"
+                      className="text-sm transition-all duration-300 flex items-center gap-2 group hover:translate-x-1"
                       style={{ color: '#0c0a4a99' }}
                     >
                       <span 
-                        className="w-1 h-1 rounded-full transition-colors"
+                        className="w-1 h-1 rounded-full transition-all duration-300 group-hover:w-2 group-hover:bg-[#b7901b]"
                         style={{ 
                           backgroundColor: '#13116466',
                         }}
                       />
-                      {airline.name}
+                      <span className="group-hover:text-[#131164] transition-colors duration-300">
+                        {airline.name}
+                      </span>
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* 4. Legal Links (New Column Added) */}
-            <div>
+            {/* 4. Legal Links */}
+            <div 
+              className={`transition-all duration-700 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: '400ms' }}
+            >
               <h3 className="font-semibold text-lg mb-4 relative" style={{ color: '#0c0a4a' }}>
-                Legal
+                Legal Links
                 <span 
-                  className="absolute -bottom-1 left-0 w-8 h-0.5 rounded-full"
+                  className="absolute -bottom-1 left-0 w-8 h-0.5 rounded-full transition-all duration-500 group-hover:w-12"
                   style={{
                     background: `linear-gradient(to right, #131164, #b7901b)`
                   }}
                 />
               </h3>
               <ul className="space-y-2.5">
-                {legalLinks.map((link) => (
-                  <li key={link.name}>
+                {legalLinks.map((link, index) => (
+                  <li 
+                    key={link.name}
+                    className={`transition-all duration-500 ease-out ${
+                      isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+                    }`}
+                    style={{ transitionDelay: `${500 + index * 30}ms` }}
+                  >
                     <Link
                       href={link.href}
-                      className="text-sm transition-colors duration-200 flex items-center gap-2 group"
+                      className="text-sm transition-all duration-300 flex items-center gap-2 group hover:translate-x-1"
                       style={{ color: '#0c0a4a99' }}
                     >
                       <span 
-                        className="w-1 h-1 rounded-full transition-colors"
+                        className="w-1 h-1 rounded-full transition-all duration-300 group-hover:w-2 group-hover:bg-[#b7901b]"
                         style={{ 
                           backgroundColor: '#13116466',
                         }}
                       />
-                      {link.name}
+                      <span className="group-hover:text-[#131164] transition-colors duration-300">
+                        {link.name}
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -253,7 +311,15 @@ export default function Footer() {
           </div>
 
           {/* Newsletter Section */}
-          <div className="mt-12 pt-8 border-t" style={{ borderColor: '#1311641A' }}>
+          <div 
+            className={`mt-12 pt-8 border-t transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ 
+              borderColor: '#1311641A',
+              transitionDelay: '600ms'
+            }}
+          >
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <h4 className="font-semibold text-base" style={{ color: '#0c0a4a' }}>
@@ -267,20 +333,20 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 sm:w-64 px-4 py-2.5 bg-white/80 border rounded-l-full focus:outline-none transition-colors text-sm"
+                  className="flex-1 sm:w-64 px-4 py-2.5 bg-white/80 border rounded-l-full focus:outline-none transition-all duration-300 focus:border-[#b7901b] focus:ring-2 focus:ring-[#b7901b]/20 text-sm"
                   style={{
                     borderColor: '#13116433',
                     color: '#0c0a4a',
                   }}
                 />
                 <button 
-                  className="px-5 py-2.5 text-white rounded-r-full font-semibold transition-all duration-300 flex items-center gap-2 text-sm whitespace-nowrap shadow-lg"
+                  className="px-5 py-2.5 text-white rounded-r-full font-semibold transition-all duration-300 flex items-center gap-2 text-sm whitespace-nowrap shadow-lg hover:scale-105 hover:shadow-xl active:scale-95 group"
                   style={{
                     background: `linear-gradient(to right, #131164, #1e1a8a)`,
                     boxShadow: `0 10px 15px -3px #13116433`
                   }}
                 >
-                  <Send size={14} />
+                  <Send size={14} className="group-hover:rotate-12 transition-transform duration-300" />
                   Subscribe
                 </button>
               </div>
@@ -289,22 +355,43 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t" style={{ borderColor: '#1311641A', backgroundColor: '#faf5e6CC' }}>
+        <div 
+          className={`border-t transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ 
+            borderColor: '#1311641A', 
+            backgroundColor: '#faf5e6CC',
+            transitionDelay: '700ms'
+          }}
+        >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs" style={{ color: '#0c0a4a40' }}>
-              <p>
+              <p className="transition-colors duration-300 hover:text-[#131164]">
                 &copy; {COMPANY.year || new Date().getFullYear()} {COMPANY.name || BRAND.name}. All rights reserved.
               </p>
               <div className="flex items-center gap-4">
-                <Link href="/privacy-policy" className="transition-colors" style={{ color: '#0c0a4a40' }}>
+                <Link 
+                  href="/privacy-policy" 
+                  className="transition-all duration-300 hover:text-[#131164] hover:scale-105"
+                  style={{ color: '#0c0a4a40' }}
+                >
                   Privacy Policy
                 </Link>
                 <span className="w-px h-3" style={{ backgroundColor: '#1311641A' }} />
-                <Link href="/terms-of-service" className="transition-colors" style={{ color: '#0c0a4a40' }}>
+                <Link 
+                  href="/terms-of-service" 
+                  className="transition-all duration-300 hover:text-[#131164] hover:scale-105"
+                  style={{ color: '#0c0a4a40' }}
+                >
                   Terms of Service
                 </Link>
                 <span className="w-px h-3" style={{ backgroundColor: '#1311641A' }} />
-                <Link href="/cookies" className="transition-colors" style={{ color: '#0c0a4a40' }}>
+                <Link 
+                  href="/cookies" 
+                  className="transition-all duration-300 hover:text-[#131164] hover:scale-105"
+                  style={{ color: '#0c0a4a40' }}
+                >
                   Cookie Policy
                 </Link>
               </div>

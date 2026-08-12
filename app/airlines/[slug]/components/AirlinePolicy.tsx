@@ -4,12 +4,19 @@ import Image from "next/image";
 import { Phone, ChevronRight, Calendar, Edit, CheckCircle, ArrowRight, Clock, Headphones } from "lucide-react";
 import { BRAND, COMPANY } from "@/app/constants";
 import type { AirlineData } from "../constants";
+import { useEffect, useState } from "react";
 
 interface AirlinePolicyProps {
   airline: AirlineData;
 }
 
 export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   // Get phone number from airline data
   const phoneNumber = airline.airline.phoneNumber || COMPANY.phone || "+1-888-845-0220";
   
@@ -60,14 +67,24 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
           <div className="lg:w-[70%] border-r-0 lg:border-r" style={{ borderColor: '#e2e8f0' }}>
             <div className="pr-0 lg:pr-8">
               {/* Heading */}
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-3" style={{ color: '#0c0a4a' }}>
+              <h2 
+                className={`text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-3 transition-all duration-700 ease-out ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ color: '#0c0a4a', transitionDelay: '100ms' }}
+              >
                 {airline.airline.name} Flight Change, Reschedule & Cancellation
               </h2>
               
               {/* Phone Number */}
-              <div className="flex items-center gap-3 mb-6">
+              <div 
+                className={`flex items-center gap-3 mb-6 transition-all duration-700 ease-out ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: '150ms' }}
+              >
                 <div 
-                  className="p-2 rounded-full text-white"
+                  className="p-2 rounded-full text-white transition-all duration-300 hover:scale-110 hover:rotate-12"
                   style={{
                     background: `linear-gradient(to right, #131164, #1e1a8a)`
                   }}
@@ -78,7 +95,7 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
                   Call Airlines Helpdesk:{" "}
                   <a 
                     href={`tel:${phoneNumber.replace(/\s/g, '')}`}
-                    className="font-bold transition-colors"
+                    className="font-bold transition-all duration-300 hover:text-[#b7901b] hover:scale-105 inline-block"
                     style={{ color: '#131164' }}
                   >
                     {phoneNumber}
@@ -87,7 +104,12 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
               </div>
 
               {/* Hero Banner - Brand Style with Left Fade */}
-              <div className="relative w-full mb-10 overflow-hidden border border-[#E2E8F0]/10 shadow-2xl" style={{ backgroundColor: '#0c0a4a' }}>
+              <div 
+                className={`relative w-full mb-10 overflow-hidden border border-[#E2E8F0]/10 shadow-2xl transition-all duration-1000 ease-out ${
+                  isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                }`}
+                style={{ backgroundColor: '#0c0a4a', transitionDelay: '200ms' }}
+              >
 
                 {/* Background */}
                 <div className="absolute inset-0">
@@ -95,7 +117,7 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
                     src="/images/flightposter.jpg"
                     alt={`Change or Cancel Flight - ${BRAND.name}`}
                     fill
-                    className="object-cover object-center"
+                    className="object-cover object-center transition-all duration-700 hover:scale-105"
                   />
 
                   {/* Left-side fade overlay - Updated to navy theme */}
@@ -110,21 +132,26 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
                   <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-center max-w-2xl">
 
                     {/* Brand */}
-                    <div className="mb-6">
-                      <div className="inline-flex items-center gap-3 backdrop-blur-md border border-white/10 text-white px-4 py-3" style={{ backgroundColor: '#1311641A' }}>
+                    <div 
+                      className={`mb-6 transition-all duration-700 ease-out ${
+                        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                      }`}
+                      style={{ transitionDelay: '250ms' }}
+                    >
+                      <div className="inline-flex items-center gap-3 backdrop-blur-md border border-white/10 text-white px-4 py-3 hover:shadow-xl transition-all duration-300 hover:scale-105" style={{ backgroundColor: '#1311641A' }}>
                         <Image
                           src="/logo/ticketlogo.png"
                           alt={BRAND.name}
                           width={34}
                           height={34}
-                          className="object-contain"
+                          className="object-contain transition-transform duration-300 hover:rotate-12"
                         />
 
                         <div className="leading-tight">
-                          <p className="text-sm font-bold tracking-wide !text-white">
+                          <p className="text-sm font-bold tracking-wide" style={{ color: '#ffffff' }}>
                             {brandDomain}.com
                           </p>
-                          <p className="text-[11px] text-white/70 !text-white/70">
+                          <p className="text-[11px]" style={{ color: 'rgba(255,255,255,0.7)' }}>
                             24/7 Airline Support
                           </p>
                         </div>
@@ -133,20 +160,34 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
 
                     {/* Main Heading */}
                     <div className="space-y-3">
-
-                      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight !text-white">
+                      <h2 
+                        className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight transition-all duration-700 ease-out ${
+                          isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                        }`}
+                        style={{ color: '#ffffff', transitionDelay: '300ms' }}
+                      >
                         {airline.airline.name}
                       </h2>
 
-                      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold !text-white">
+                      <h2 
+                        className={`text-2xl sm:text-3xl lg:text-4xl font-bold transition-all duration-700 ease-out ${
+                          isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                        }`}
+                        style={{ color: '#ffffff', transitionDelay: '350ms' }}
+                      >
                         Change or Cancel
                       </h2>
 
                       {/* Flight Divider */}
-                      <div className="flex items-center gap-4 py-2 max-w-md">
+                      <div 
+                        className={`flex items-center gap-4 py-2 max-w-md transition-all duration-700 ease-out ${
+                          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+                        }`}
+                        style={{ transitionDelay: '400ms' }}
+                      >
                         <div className="h-px flex-1 bg-white/20" />
 
-                        <span className="text-3xl sm:text-4xl italic font-semibold !text-white">
+                        <span className="text-3xl sm:text-4xl italic font-semibold" style={{ color: '#ffffff' }}>
                           Flight
                         </span>
 
@@ -154,23 +195,33 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
                       </div>
 
                       {/* With Brand - Updated accent color */}
-                      <div className="flex items-center gap-3 text-lg text-white/90">
-                        <span className="!text-white">with</span>
+                      <div 
+                        className={`flex items-center gap-3 text-lg text-white/90 transition-all duration-700 ease-out ${
+                          isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                        }`}
+                        style={{ transitionDelay: '450ms' }}
+                      >
+                        <span style={{ color: '#ffffff' }}>with</span>
 
                         <Image
                           src="/logo/ticketlogo.png"
                           alt={BRAND.name}
                           width={28}
                           height={28}
-                          className="object-contain"
+                          className="object-contain transition-transform duration-300 hover:scale-125"
                         />
 
-                        <span className="font-extrabold !text-white italic" style={{ color: '#f5edc8' }}>
+                        <span className="font-extrabold italic transition-all duration-300 hover:text-[#f5edc8]" style={{ color: '#f5edc8' }}>
                           {BRAND.name}
                         </span>
                       </div>
 
-                      <p className="max-w-xl text-sm sm:text-base text-white/75 leading-relaxed pt-2 !text-white/75">
+                      <p 
+                        className={`max-w-xl text-sm sm:text-base leading-relaxed pt-2 transition-all duration-700 ease-out ${
+                          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                        }`}
+                        style={{ color: 'rgba(255,255,255,0.75)', transitionDelay: '500ms' }}
+                      >
                         Get instant assistance for flight changes, cancellations, same-day
                         rebooking, fare difference guidance, and refund-related queries from
                         our travel experts at {BRAND.name}.
@@ -179,52 +230,32 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
 
                     {/* Features - Updated to navy theme */}
                     <div className="mt-8 space-y-5">
+                      {[
+                        { icon: Calendar, title: "Change or Cancel", desc: "Modify your flight hassle-free" },
+                        { icon: Clock, title: "Save on Change Fees", desc: "Explore available fee-saving options" },
+                        { icon: Headphones, title: "24/7 Support", desc: "Real travel assistance anytime" }
+                      ].map((feature, index) => (
+                        <div 
+                          key={index}
+                          className={`flex items-start gap-4 transition-all duration-700 ease-out ${
+                            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                          }`}
+                          style={{ transitionDelay: `${550 + index * 50}ms` }}
+                        >
+                          <div className="w-12 h-12 rounded-full flex items-center justify-center text-white flex-shrink-0 shadow-lg transition-all duration-300 hover:scale-110 hover:rotate-12" style={{ backgroundColor: '#131164' }}>
+                            <feature.icon size={22} />
+                          </div>
 
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-full flex items-center justify-center text-white flex-shrink-0 shadow-lg" style={{ backgroundColor: '#131164' }}>
-                          <Calendar size={22} />
+                          <div>
+                            <h3 className="font-semibold text-base transition-colors duration-300 hover:text-[#f5edc8]" style={{ color: '#ffffff' }}>
+                              {feature.title}
+                            </h3>
+                            <p className="text-sm" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                              {feature.desc}
+                            </p>
+                          </div>
                         </div>
-
-                        <div>
-                          <h3 className="font-semibold text-base !text-white">
-                            Change or Cancel
-                          </h3>
-                          <p className="text-sm text-white/70 !text-white/70">
-                            Modify your flight hassle-free
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-full flex items-center justify-center text-white flex-shrink-0 shadow-lg" style={{ backgroundColor: '#131164' }}>
-                          <Clock size={22} />
-                        </div>
-
-                        <div>
-                          <h3 className="font-semibold text-base !text-white">
-                            Save on Change Fees
-                          </h3>
-                          <p className="text-sm text-white/70 !text-white/70">
-                            Explore available fee-saving options
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-full flex items-center justify-center text-white flex-shrink-0 shadow-lg" style={{ backgroundColor: '#131164' }}>
-                          <Headphones size={22} />
-                        </div>
-
-                        <div>
-                          <h3 className="font-semibold text-base !text-white">
-                            24/7 Support
-                          </h3>
-                          <p className="text-sm text-white/70 !text-white/70">
-                            Real travel assistance anytime
-                          </p>
-                        </div>
-                      </div>
-
+                      ))}
                     </div>
                   </div>
 
@@ -233,21 +264,25 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
                 </div>
 
                 {/* CALL BAR - Updated to navy theme */}
-                <div className="relative z-10 text-white border-t border-white/10" style={{ backgroundColor: '#0c0a4aF2' }}>
+                <div 
+                  className={`relative z-10 text-white border-t border-white/10 transition-all duration-700 ease-out ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ backgroundColor: '#0c0a4aF2', transitionDelay: '700ms' }}
+                >
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4">
 
                     <div className="flex items-center gap-3">
-
-                      <div className="w-11 h-11 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: '#f5edc8' }}>
+                      <div className="w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:rotate-12" style={{ backgroundColor: '#f5edc8' }}>
                         <Phone size={22} style={{ color: '#131164' }} />
                       </div>
 
                       <div>
-                        <p className="text-sm text-white/80 font-medium !text-white/80">
+                        <p className="text-sm font-medium" style={{ color: 'rgba(255,255,255,0.8)' }}>
                           Call Now
                         </p>
 
-                        <p className="text-lg sm:text-xl font-extrabold tracking-wide !text-white">
+                        <p className="text-lg sm:text-xl font-extrabold tracking-wide transition-colors duration-300 hover:text-[#f5edc8]" style={{ color: '#ffffff' }}>
                           {phoneNumber}
                         </p>
                       </div>
@@ -255,13 +290,13 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
 
                     <a
                       href={"tel:" + phoneNumber.replace(/\s/g, "")}
-                      className="inline-flex items-center gap-2 px-6 py-3 font-bold transition-all duration-300 shadow-lg"
+                      className="inline-flex items-center gap-2 px-6 py-3 font-bold transition-all duration-300 shadow-lg hover:scale-105 hover:shadow-xl active:scale-95"
                       style={{
                         backgroundColor: '#f5edc8',
                         color: '#131164'
                       }}
                     >
-                      <Phone size={18} />
+                      <Phone size={18} className="animate-pulse" />
                       Call 24/7
                     </a>
 
@@ -274,15 +309,18 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
                 {policyFaqs.map((faq, index) => (
                   <div
                     key={index}
-                    className="bg-white shadow-sm hover:shadow-md transition-all duration-300 p-5 border hover:border-[#b7901b]/30 group"
+                    className={`bg-white shadow-sm hover:shadow-md transition-all duration-500 ease-out p-5 border hover:border-[#b7901b]/30 group ${
+                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    }`}
                     style={{
-                      borderColor: '#e2e8f0'
+                      borderColor: '#e2e8f0',
+                      transitionDelay: `${800 + index * 50}ms`
                     }}
                   >
                     <div className="flex items-start gap-3">
                       <div className="flex-shrink-0 mt-1">
                         <div 
-                          className="w-6 h-6 rounded-full flex items-center justify-center transition-colors"
+                          className="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-12"
                           style={{
                             backgroundColor: '#f5edc8',
                           }}
@@ -291,11 +329,11 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-sm sm:text-base font-semibold transition-colors" style={{ color: '#0c0a4a' }}>
+                        <h3 className="text-sm sm:text-base font-semibold transition-colors duration-300 group-hover:text-[#b7901b]" style={{ color: '#0c0a4a' }}>
                           {faq.question}
                         </h3>
                         <div className="mt-2">
-                          <p className="text-xs sm:text-sm leading-relaxed" style={{ color: '#0c0a4aB3' }}>
+                          <p className="text-xs sm:text-sm leading-relaxed transition-all duration-300 group-hover:text-[#0c0a4a]" style={{ color: '#0c0a4aB3' }}>
                             {faq.answer}
                           </p>
                         </div>
@@ -309,26 +347,36 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
 
           {/* Right Side - 30% - Image Only */}
           <div className="lg:w-[30%] flex items-start justify-center">
-            <div className="sticky top-24">
+            <div 
+              className={`sticky top-24 transition-all duration-1000 ease-out ${
+                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+              }`}
+              style={{ transitionDelay: '500ms' }}
+            >
               <Image
                 src="/images/sidepannel.png"
                 alt={`Review Us Now - ${BRAND.name}`}
                 width={400}
                 height={600}
-                className="w-full max-w-[400px] h-auto object-contain"
+                className="w-full max-w-[400px] h-auto object-contain transition-all duration-700 hover:scale-105"
               />
             </div>
           </div>
         </div>
 
         {/* Three Steps Section */}
-        <div className="mt-12 pt-8 border-t" style={{ borderColor: '#e2e8f0' }}>
+        <div 
+          className={`mt-12 pt-8 border-t transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+          style={{ borderColor: '#e2e8f0', transitionDelay: '900ms' }}
+        >
           <div className="text-center mb-8">
             <h3 className="text-2xl sm:text-3xl font-bold" style={{ color: '#0c0a4a' }}>
               Change Your {airline.airline.name} Flight with {BRAND.name}
             </h3>
             <div 
-              className="w-16 h-1 mx-auto mt-3 rounded-full"
+              className="w-16 h-1 mx-auto mt-3 rounded-full transition-all duration-500 hover:w-24"
               style={{
                 background: `linear-gradient(to right, #131164, #b7901b)`
               }}
@@ -339,14 +387,17 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className="relative bg-white shadow-md hover:shadow-xl transition-all duration-300 p-6 border hover:border-[#b7901b]/30 group"
+                className={`relative bg-white shadow-md hover:shadow-xl transition-all duration-500 ease-out p-6 border hover:border-[#b7901b]/30 group hover:-translate-y-2 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
                 style={{
-                  borderColor: '#e2e8f0'
+                  borderColor: '#e2e8f0',
+                  transitionDelay: `${1000 + index * 100}ms`
                 }}
               >
                 {/* Step Number */}
                 <div 
-                  className="absolute -top-3 -left-3 w-8 h-8 rounded-full text-white text-sm font-bold flex items-center justify-center shadow-lg"
+                  className="absolute -top-3 -left-3 w-8 h-8 rounded-full text-white text-sm font-bold flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110"
                   style={{
                     background: `linear-gradient(to right, #131164, #b7901b)`
                   }}
@@ -356,24 +407,24 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
 
                 <div className="flex flex-col items-center text-center">
                   <div 
-                    className="w-16 h-16 rounded-full transition-colors duration-300 flex items-center justify-center mb-4"
+                    className="w-16 h-16 rounded-full transition-all duration-300 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-12"
                     style={{
                       backgroundColor: '#f5edc8',
                     }}
                   >
-                    <step.icon className="w-8 h-8 transition-colors duration-300" style={{ color: '#131164' }} />
+                    <step.icon className="w-8 h-8 transition-colors duration-300 group-hover:text-[#b7901b]" style={{ color: '#131164' }} />
                   </div>
-                  <h4 className="text-base font-semibold transition-colors" style={{ color: '#0c0a4a' }}>
+                  <h4 className="text-base font-semibold transition-colors duration-300 group-hover:text-[#b7901b]" style={{ color: '#0c0a4a' }}>
                     {step.title}
                   </h4>
-                  <p className="text-xs sm:text-sm mt-2 leading-relaxed" style={{ color: '#0c0a4a99' }}>
+                  <p className="text-xs sm:text-sm mt-2 leading-relaxed group-hover:text-[#0c0a4a] transition-colors duration-300" style={{ color: '#0c0a4a99' }}>
                     {step.description}
                   </p>
                 </div>
 
                 {/* Connector Line */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2">
+                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 transition-all duration-300 group-hover:scale-125">
                     <ArrowRight className="w-6 h-6" style={{ color: '#b7901b4D' }} />
                   </div>
                 )}
@@ -382,27 +433,33 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
           </div>
 
           {/* Unbeatable Deals CTA */}
-          <div className="mt-10 p-6 sm:p-8 text-center text-white shadow-xl" style={{
-            background: `linear-gradient(to right, #131164, #b7901b)`
-          }}>
+          <div 
+            className={`mt-10 p-6 sm:p-8 text-center text-white shadow-xl transition-all duration-700 ease-out hover:shadow-2xl ${
+              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+            style={{
+              background: `linear-gradient(to right, #131164, #b7901b)`,
+              transitionDelay: '1200ms'
+            }}
+          >
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-left">
-                <h4 className="text-xl sm:text-2xl font-bold flex items-center gap-2 !text-white">
-                  <Phone className="w-6 h-6 animate-pulse !text-white" />
+                <h4 className="text-xl sm:text-2xl font-bold flex items-center gap-2" style={{ color: '#ffffff' }}>
+                  <Phone className="w-6 h-6 animate-pulse" style={{ color: '#ffffff' }} />
                   For Unbeatable Deals, Call Us Today!
                 </h4>
-                <p className="text-white/80 text-sm mt-1">
+                <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.8)' }}>
                   Get exclusive discounts and personalized assistance from our travel experts at {BRAND.name}
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row items-center gap-3">
-                <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2.5">
-                  <Phone className="w-4 h-4 !text-white" />
-                  <span className="font-bold text-base !text-white">24/7 Support</span>
+                <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2.5 transition-all duration-300 hover:scale-105">
+                  <Phone className="w-4 h-4" style={{ color: '#ffffff' }} />
+                  <span className="font-bold text-base" style={{ color: '#ffffff' }}>24/7 Support</span>
                 </div>
                 <a
                   href={`tel:${phoneNumber.replace(/\s/g, '')}`}
-                  className="bg-white px-6 py-3 rounded-full font-bold hover:bg-[#faf5e6] transition-colors shadow-lg flex items-center gap-2 whitespace-nowrap"
+                  className="bg-white px-6 py-3 rounded-full font-bold hover:bg-[#faf5e6] transition-all duration-300 shadow-lg flex items-center gap-2 whitespace-nowrap hover:scale-105 hover:shadow-xl active:scale-95"
                   style={{ color: '#131164' }}
                 >
                   <Phone size={18} />

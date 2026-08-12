@@ -4,13 +4,20 @@ import Image from "next/image";
 import SearchEngine from "@/components/SearchEngine";
 import { Phone, Headphones } from "lucide-react";
 import { BRAND } from "@/app/constants";
-import type { AirlineData } from "../constants";
+import type { AirlineData } from "../airlines-data";
+import { useEffect, useState } from "react";
 
 interface AirlineHeroProps {
   airline: AirlineData;
 }
 
 export default function AirlineHero({ airline }: AirlineHeroProps) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   // Extract airline name from the data
   const airlineName = airline.airline.name;
   
@@ -25,9 +32,13 @@ export default function AirlineHero({ airline }: AirlineHeroProps) {
           src="/images/airlineshero.png"
           alt={`${airlineName} flights - ${BRAND.name}`}
           fill
-          className="object-cover object-center"
+          className="object-cover object-center transition-all duration-1000 ease-out"
           priority
           quality={100}
+          style={{
+            transform: isVisible ? 'scale(1)' : 'scale(1.05)',
+            transitionDelay: '100ms'
+          }}
         />
         {/* Navy & Gold themed overlay */}
         <div className="absolute inset-0" style={{
@@ -38,9 +49,10 @@ export default function AirlineHero({ airline }: AirlineHeroProps) {
         
         {/* Gold accent glow */}
         <div 
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-20 transition-opacity duration-1000"
           style={{
-            background: `radial-gradient(ellipse at 30% 50%, #b7901b33, transparent 70%)`
+            background: `radial-gradient(ellipse at 30% 50%, #b7901b33, transparent 70%)`,
+            opacity: isVisible ? 0.2 : 0
           }}
         />
       </div>
@@ -56,12 +68,17 @@ export default function AirlineHero({ airline }: AirlineHeroProps) {
       {/* Content - Left Aligned & Full Width */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="w-full text-left">
-          <h1 className="mb-4 sm:mb-5">
+          <h1 
+            className={`mb-4 sm:mb-5 transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '200ms' }}
+          >
             {titleParts.length > 1 ? (
               <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.2] tracking-tight">
                 {titleParts[0]}
                 <span 
-                  className="italic"
+                  className="italic transition-all duration-300 hover:bg-gradient-to-r hover:from-[#f5edc8] hover:to-[#b7901b]"
                   style={{
                     background: `linear-gradient(to right, #b7901b, #f5edc8, #b7901b)`,
                     WebkitBackgroundClip: 'text',
@@ -80,12 +97,22 @@ export default function AirlineHero({ airline }: AirlineHeroProps) {
             )}
           </h1>
 
-          <p className="text-white/80 italic text-sm sm:text-base md:text-lg w-full mb-6 sm:mb-8 font-light tracking-wide leading-relaxed max-w-none">
+          <p 
+            className={`text-white/80 italic text-sm sm:text-base md:text-lg w-full mb-6 sm:mb-8 font-light tracking-wide leading-relaxed max-w-none transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+            style={{ transitionDelay: '300ms' }}
+          >
             {BRAND.name} is an independent travel agency. Our agents can help you understand {airlineName} Airlines&apos; published change, cancellation, name-correction, and upgrade policies so you can decide on the right next step for your trip.
           </p>
 
           {/* Search Engine Component */}
-          <div className="relative z-20">
+          <div 
+            className={`relative z-20 transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+            style={{ transitionDelay: '400ms' }}
+          >
             <SearchEngine />
           </div>
         </div>
@@ -100,12 +127,26 @@ export default function AirlineHero({ airline }: AirlineHeroProps) {
       />
 
       {/* Gold corner accents */}
-      <div className="absolute top-20 left-8 z-10 w-16 h-16 border-t-2 border-l-2 border-[#b7901b]/30" />
-      <div className="absolute top-20 right-8 z-10 w-16 h-16 border-t-2 border-r-2 border-[#b7901b]/30" />
+      <div 
+        className={`absolute top-20 left-8 z-10 w-16 h-16 border-t-2 border-l-2 border-[#b7901b]/30 transition-all duration-700 ease-out ${
+          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+        }`}
+        style={{ transitionDelay: '500ms' }}
+      />
+      <div 
+        className={`absolute top-20 right-8 z-10 w-16 h-16 border-t-2 border-r-2 border-[#b7901b]/30 transition-all duration-700 ease-out ${
+          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+        }`}
+        style={{ transitionDelay: '600ms' }}
+      />
 
       {/* Professional Floating Call Widget - Navy & Gold Theme */}
-      <div className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-3">
-
+      <div 
+        className={`fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-3 transition-all duration-700 ease-out ${
+          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+        }`}
+        style={{ transitionDelay: '700ms' }}
+      >
         {/* Chat Card - appears on hover with optimized animation */}
         <div
           className="

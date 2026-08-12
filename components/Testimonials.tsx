@@ -1,11 +1,16 @@
 "use client";
 
 import { Star, Quote, ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BRAND } from "@/app/constants";
 
 export default function TestimonialsSection() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const testimonials = [
     {
@@ -43,9 +48,14 @@ export default function TestimonialsSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {/* Heading - Left Aligned */}
-          <div className="mb-4">
+          <div 
+            className={`mb-4 transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '100ms' }}
+          >
             <div 
-              className="inline-flex items-center gap-2 px-4 py-1.5 mb-4"
+              className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 transition-all duration-300 hover:scale-105 hover:shadow-md"
               style={{ 
                 backgroundColor: '#f5edc8',
               }}
@@ -58,7 +68,7 @@ export default function TestimonialsSection() {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight" style={{ color: '#0c0a4a' }}>
               What Our Customers Say About{" "}
               <span 
-                className="text-transparent bg-clip-text"
+                className="text-transparent bg-clip-text transition-all duration-300 hover:bg-gradient-to-r hover:from-[#b7901b] hover:to-[#131164]"
                 style={{
                   background: `linear-gradient(to right, #131164, #b7901b)`,
                   WebkitBackgroundClip: 'text',
@@ -69,7 +79,7 @@ export default function TestimonialsSection() {
               </span>
             </h2>
             <div 
-              className="w-12 h-1 mt-3"
+              className="w-12 h-1 mt-3 transition-all duration-500 hover:w-20"
               style={{
                 background: `linear-gradient(to right, #131164, #b7901b)`
               }}
@@ -77,7 +87,12 @@ export default function TestimonialsSection() {
           </div>
 
           {/* Content - Left Aligned */}
-          <div className="mb-6 sm:mb-8">
+          <div 
+            className={`mb-6 sm:mb-8 transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+            style={{ transitionDelay: '200ms' }}
+          >
             <p className="text-sm sm:text-base max-w-2xl" style={{ color: '#0c0a4aB3' }}>
               Nothing speaks louder than the voices of our happy travelers. Here's
               what real customers are saying about their experience booking with us.
@@ -88,13 +103,16 @@ export default function TestimonialsSection() {
         {/* Three Testimonial Cards */}
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-            {testimonials.map((testimonial) => (
+            {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.id}
-                className="p-5 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border"
+                className={`p-5 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-500 ease-out border hover:-translate-y-2 hover:shadow-2xl ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
                 style={{
                   backgroundColor: '#faf5e6',
                   borderColor: '#e2e8f0',
+                  transitionDelay: `${300 + index * 100}ms`,
                 }}
               >
                 {/* Rating Stars */}
@@ -103,7 +121,7 @@ export default function TestimonialsSection() {
                     <Star
                       key={i}
                       size={16}
-                      className="fill-current"
+                      className="fill-current transition-all duration-300 hover:scale-125 hover:rotate-12"
                       style={{ color: '#131164' }}
                     />
                   ))}
@@ -119,7 +137,7 @@ export default function TestimonialsSection() {
                 {/* Customer Info */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="font-semibold text-sm sm:text-base" style={{ color: '#0c0a4a' }}>
+                    <div className="font-semibold text-sm sm:text-base transition-colors duration-300 hover:text-[#b7901b]" style={{ color: '#0c0a4a' }}>
                       {testimonial.name}
                     </div>
                     <div className="text-sm" style={{ color: '#131164' }}>
@@ -130,32 +148,36 @@ export default function TestimonialsSection() {
                   {/* View Testimonial Link */}
                   <button
                     onClick={() => toggleExpand(testimonial.id)}
-                    className="flex items-center gap-1 font-medium text-xs sm:text-sm transition-colors whitespace-nowrap ml-2"
+                    className="flex items-center gap-1 font-medium text-xs sm:text-sm transition-all duration-300 whitespace-nowrap ml-2 hover:scale-105 hover:gap-2"
                     style={{ color: '#131164' }}
                   >
                     {expandedId === testimonial.id ? (
                       <>
                         <span>Show Less</span>
-                        <ChevronUp size={14} />
+                        <ChevronUp size={14} className="transition-transform duration-300" />
                       </>
                     ) : (
                       <>
                         <span>View Testimonial</span>
-                        <ChevronDown size={14} />
+                        <ChevronDown size={14} className="transition-transform duration-300 group-hover:translate-y-1" />
                       </>
                     )}
                   </button>
                 </div>
 
                 {/* Expand/Collapse Animation */}
-                {expandedId === testimonial.id && (
-                  <div className="mt-3 pt-3 border-t" style={{ borderColor: '#e2e8f0' }}>
+                <div 
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                    expandedId === testimonial.id ? 'max-h-20 opacity-100 mt-3' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="pt-3 border-t" style={{ borderColor: '#e2e8f0' }}>
                     <div className="flex items-center gap-2 text-xs" style={{ color: '#0c0a4a66' }}>
                       <Quote size={12} style={{ color: '#131164' }} />
                       <span>Full review</span>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>

@@ -4,67 +4,42 @@ import SearchEngine from "./SearchEngine";
 import Image from "next/image";
 import { Phone, Headphones } from "lucide-react";
 import { CONTACT } from "@/app/constants";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20 sm:pt-24">
-      {/* Background Image with Clean Dark Overlay */}
+      {/* Background Image - Full Size with Gradient Bottom */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/herobackgroundnavy.jpg"
+          src="/images/herobackgr.png"
           alt="Ticket to Middle East - Travel Experiences"
           fill
           className="object-cover object-center"
           priority
           quality={100}
         />
-        {/* Clean Dark Overlay - No Bluish Tint */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/75" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
-        <div className="absolute inset-0 bg-black/20" />
+        {/* Gradient Bottom - Smooth Transition to Next Section */}
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white via-white/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-white via-white/60 to-transparent" />
       </div>
-
-      {/* Premium Texture Overlay */}
-      <div className="absolute inset-0 z-0 opacity-[0.02] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSIjZmZmIj48cGF0aCBkPSJNMzYgMzRjMCAxLjEgLjkgMiAyIDJzMi0uOSAyLTItLjktMi0yLTIgLTIgLjktMiAyei0xMiA0YzAgMS4xLjkgMiAyIDJzMi0uOSAyLTItLjktMi0yLTIgLTIgLjktMiAyeiIvPjwvZz48L3N2Zz4=')]" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="max-w-6xl mx-auto text-center">
-          {/* Main Heading - Two Lines Only */}
-          <h1 className="max-w-4xl mx-auto mb-3 sm:mb-5">
-            <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight">
-              Discover the World's
-            </span>
-            <span className="relative inline-block">
-              <span 
-                className="relative z-10 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight italic"
-                style={{
-                  background: `linear-gradient(to right, #b7901b, #f5edc8, #b7901b)`,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
-                }}
-              >
-                Best Travel Experiences
-              </span>
-              <span 
-                className="absolute -bottom-0.5 left-0 w-full h-1 rounded-full blur-sm"
-                style={{
-                  background: `linear-gradient(to right, #b7901b80, #1311641A)`
-                }}
-              />
-            </span>
-          </h1>
-
-          {/* Subtitle - Centered */}
-          <p className="text-white/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-6 sm:mb-8 font-light tracking-wide leading-relaxed">
-            Curated luxury journeys to the most breathtaking destinations.
-            <br className="hidden sm:block" />
-            Let us craft your perfect escape.
-          </p>
-
-          {/* Search Engine Component */}
-          <div className="relative z-20">
+          {/* Search Engine Component - Positioned Lower with More Top Margin */}
+          <div 
+            className={`relative z-20 mt-32 sm:mt-48 md:mt-56 lg:mt-68 transition-all duration-1000 ease-out ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
+            style={{ transitionDelay: '300ms' }}
+          >
             <SearchEngine />
           </div>
         </div>
@@ -72,8 +47,13 @@ export default function Hero() {
 
       {/* Scroll Indicator - Positioned at bottom of section */}
       <div 
-        className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 transition-colors cursor-pointer z-10"
-        style={{ color: '#b7901b80' }}
+        className={`absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 transition-opacity duration-1000 cursor-pointer z-10 ${
+          isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ 
+          color: '#b7901b80',
+          transitionDelay: '800ms'
+        }}
       >
         <div className="w-4 h-6 border border-white/15 rounded-full flex justify-center p-1">
           <div 
@@ -83,9 +63,13 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Professional Floating Call Widget - Navy & Gold Theme (Added here) */}
-      <div className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-3">
-
+      {/* Professional Floating Call Widget - Navy & Gold Theme */}
+      <div 
+        className={`fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-3 transition-all duration-700 ease-out ${
+          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+        }`}
+        style={{ transitionDelay: '600ms' }}
+      >
         {/* Chat Card - appears on hover with optimized animation */}
         <div
           className="

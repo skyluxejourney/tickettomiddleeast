@@ -2,8 +2,15 @@
 
 import { Phone, ArrowRight, Star, Users, Shield, Tag, Sparkles, Award, Clock, Crown } from "lucide-react";
 import { COMPANY, CONTACT } from "@/app/constants";
+import { useEffect, useState } from "react";
 
 export default function ExclusiveDealsPoster() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   // Use static positions instead of Math.random() to avoid hydration mismatches
   const particles = [
     { left: "10%", top: "20%", delay: "0s", duration: "4s" },
@@ -32,7 +39,9 @@ export default function ExclusiveDealsPoster() {
     <section className="py-8 sm:py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div 
-          className="relative overflow-hidden shadow-2xl"
+          className={`relative overflow-hidden shadow-2xl transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
           style={{
             background: `linear-gradient(135deg, #0c0a4a, #131164, #1e1a8a)`
           }}
@@ -84,7 +93,15 @@ export default function ExclusiveDealsPoster() {
             {/* Left Content */}
             <div className="flex-1 p-6 sm:p-8 lg:p-10 xl:p-12 text-center lg:text-left">
               {/* Premium Badge */}
-              <div className="inline-flex items-center gap-2 backdrop-blur-sm rounded-full px-5 py-2 mb-6 border border-[#f5edc8]/20" style={{ backgroundColor: '#13116466' }}>
+              <div 
+                className={`inline-flex items-center gap-2 backdrop-blur-sm rounded-full px-5 py-2 mb-6 border border-[#f5edc8]/20 transition-all duration-700 ease-out ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+                }`}
+                style={{ 
+                  backgroundColor: '#13116466',
+                  transitionDelay: '200ms'
+                }}
+              >
                 <Crown size={16} style={{ color: '#f5edc8' }} />
                 <span className="text-white text-xs font-semibold tracking-[0.2em] uppercase">
                   Premium Travel Deals
@@ -108,13 +125,23 @@ export default function ExclusiveDealsPoster() {
                 </span>
               </h2>
 
-              <p className="text-white/90 !text-white/90 text-sm sm:text-base lg:text-lg max-w-lg mx-auto lg:mx-0 mb-6 leading-relaxed">
+              <p 
+                className={`text-white/90 !text-white/90 text-sm sm:text-base lg:text-lg max-w-lg mx-auto lg:mx-0 mb-6 leading-relaxed transition-all duration-700 ease-out ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: '300ms' }}
+              >
                 Call now and let our professional agents book your ticket at the best price.
                 Limited time offer – don't miss out!
               </p>
 
               {/* Trust Badges - Updated Design */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-6">
+              <div 
+                className={`flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-6 transition-all duration-700 ease-out ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: '400ms' }}
+              >
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10" style={{ backgroundColor: '#1311644D' }}>
                   <Star size={14} className="text-yellow-400 fill-yellow-400" />
                   <span className="text-white/90 text-xs font-medium">4.9/5 Rating</span>
@@ -130,7 +157,12 @@ export default function ExclusiveDealsPoster() {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
+              <div 
+                className={`flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 transition-all duration-700 ease-out ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: '500ms' }}
+              >
                 <a
                   href={`tel:${CONTACT.phoneRaw}`}
                   className="flex items-center gap-3 backdrop-blur-sm rounded-full px-5 sm:px-6 py-3 w-full sm:w-auto transition-all duration-300 border border-white/20 hover:scale-105"
@@ -150,13 +182,18 @@ export default function ExclusiveDealsPoster() {
                   }}
                 >
                   <span>Call Now</span>
-                  <ArrowRight size={18} />
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
             </div>
 
             {/* Right Image - Warm travel image that aligns with navy/gold theme */}
-            <div className="relative lg:w-1/2 min-h-[250px] sm:min-h-[300px] lg:min-h-[350px] xl:min-h-[400px]">
+            <div 
+              className={`relative lg:w-1/2 min-h-[250px] sm:min-h-[300px] lg:min-h-[350px] xl:min-h-[400px] transition-all duration-1000 ease-out ${
+                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`}
+              style={{ transitionDelay: '400ms' }}
+            >
               <img
                 src="/images/exclusiveimage.jpg"
                 alt="Exclusive Travel Deals"
@@ -168,7 +205,12 @@ export default function ExclusiveDealsPoster() {
               />
               
               {/* Floating Savings Badge - Updated Design */}
-              <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-white p-3 sm:p-4 shadow-2xl rotate-3">
+              <div 
+                className={`absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-white p-3 sm:p-4 shadow-2xl rotate-3 transition-all duration-700 ease-out hover:rotate-0 hover:scale-110 ${
+                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+                }`}
+                style={{ transitionDelay: '600ms' }}
+              >
                 <div 
                   className="px-4 sm:px-6 py-2 sm:py-3 text-white text-center"
                   style={{
@@ -182,7 +224,15 @@ export default function ExclusiveDealsPoster() {
               </div>
 
               {/* Floating Trust Badge */}
-              <div className="absolute bottom-6 left-4 backdrop-blur-sm px-4 py-2.5 rounded-lg border border-white/10" style={{ backgroundColor: '#0c0a4aCC' }}>
+              <div 
+                className={`absolute bottom-6 left-4 backdrop-blur-sm px-4 py-2.5 rounded-lg border border-white/10 transition-all duration-700 ease-out hover:scale-105 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ 
+                  backgroundColor: '#0c0a4aCC',
+                  transitionDelay: '700ms'
+                }}
+              >
                 <div className="flex items-center gap-3 text-white">
                   <div className="flex items-center gap-1">
                     <Clock size={14} style={{ color: '#b7901b' }} />
