@@ -9,6 +9,7 @@ import {
   Clock,
   Award,
   Shield,
+  AlertCircle,
 } from "lucide-react";
 import ContactModal from "./ContactModal";
 import Link from "next/link";
@@ -312,7 +313,7 @@ export default function Footer() {
 
           {/* Newsletter Section */}
           <div 
-            className={`mt-12 pt-8 border-t transition-all duration-700 ease-out ${
+            className={`mt-8 pt-6 border-t transition-all duration-700 ease-out ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
             style={{ 
@@ -350,6 +351,35 @@ export default function Footer() {
                   Subscribe
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Disclaimer Section - Full Width */}
+        <div 
+          className={`w-full transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ 
+            backgroundColor: '#0c0a4a05', 
+            borderTop: '1px solid #1311641A', 
+            borderBottom: '1px solid #1311641A',
+            transitionDelay: '650ms'
+          }}
+        >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#131164' }} />
+              <p className="text-xs leading-relaxed" style={{ color: '#0c0a4a99' }}>
+                <span className="font-semibold" style={{ color: '#0c0a4a' }}>Disclaimer:</span>{" "}
+                This Disclaimer governs the use of the website www.Tickettomiddleeast.com 
+                (the "Website"), operated by Noam Flyers Inc. ("Company," "we," "us," 
+                or "our"), a USA-registered travel company. Tickettomiddleeast.com is an 
+                independent online travel agency and is not an airline. We are not 
+                affiliated with, owned by, or operated by any airline. Our role is to 
+                facilitate travel bookings and provide customers with access to available 
+                travel options from airlines and other travel service providers.
+              </p>
             </div>
           </div>
         </div>
