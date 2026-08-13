@@ -1,10 +1,17 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true, // Add this line
-  },
-  // ... other config
-}
+import type { NextConfig } from 'next';
 
-module.exports = nextConfig
+const nextConfig: NextConfig = {
+  output: 'export', // Add this line for static export
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+    // If you're using static export, you may need this:
+    unoptimized: true, // This disables image optimization for static export
+  },
+};
+
+export default nextConfig;
