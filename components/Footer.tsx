@@ -27,16 +27,16 @@ export default function Footer() {
     setIsVisible(true);
   }, []);
 
-  // 1. Quick Links (Updated)
+  // Updated Quick Links - Contact Us now links to /contact
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Disclaimer", href: "/disclaimer" },
-    { name: "Contact Us", href: "#", isModal: true },
+    { name: "Contact Us", href: "/contact" }, // Changed to /contact
     { name: "Site Map", href: "/sitemap" },
   ];
 
-  // 2. Legal Links (Added)
+  // Legal Links
   const legalLinks = [
     { name: "Terms & Condition", href: "/terms-of-service" },
     { name: "Privacy Policy", href: "/privacy-policy" },
@@ -67,14 +67,6 @@ export default function Footer() {
       name: airline.airline.name,
       slug: getSlugFromName(airline.airline.name)
     }));
-
-  const handleLinkClick = (e: React.MouseEvent, linkName: string, isModal?: boolean) => {
-    if (isModal) {
-      e.preventDefault();
-      setSelectedLink(linkName);
-      setShowModal(true);
-    }
-  };
 
   const closeModal = () => {
     setShowModal(false);
@@ -161,24 +153,7 @@ export default function Footer() {
                     }`}
                     style={{ transitionDelay: `${300 + index * 50}ms` }}
                   >
-                    {link.isModal ? (
-                      <a
-                        href={link.href}
-                        onClick={(e) => handleLinkClick(e, link.name, true)}
-                        className="text-sm transition-all duration-300 flex items-center gap-2 group cursor-pointer hover:translate-x-1"
-                        style={{ color: '#0c0a4a99' }}
-                      >
-                        <span 
-                          className="w-1 h-1 rounded-full transition-all duration-300 group-hover:w-2 group-hover:bg-[#b7901b]"
-                          style={{ 
-                            backgroundColor: '#13116466',
-                          }}
-                        />
-                        <span className="group-hover:text-[#131164] transition-colors duration-300">
-                          {link.name}
-                        </span>
-                      </a>
-                    ) : link.name === "Home" ? (
+                    {link.name === "Home" ? (
                       <a
                         href={link.href}
                         onClick={(e) => {

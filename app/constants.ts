@@ -5,7 +5,7 @@ export const COMPANY = {
   email: "Reservations@tickettomiddleeast.com",
   phone: "+1-8666521753",
   phoneRaw: "18666521753",
-  address: "123 Travel Street, New York, USA",
+  address: "Basement Plot Number 35 Sector 11 Dwarka New Delhi 110075",
   year: new Date().getFullYear(),
 };
 

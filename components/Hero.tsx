@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -139,16 +140,16 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Professional Floating Call Widget - Navy & Gold Theme */}
+      {/* Professional Floating Call Widget - Fixed to not block clicks */}
       <div 
-        className={`fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 group flex items-center gap-3 transition-all duration-700 ease-out ${
+        className={`fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-3 transition-all duration-700 ease-out ${
           isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
         }`}
-        style={{ transitionDelay: '600ms' }}
+        style={{ transitionDelay: '600ms', pointerEvents: 'none' }}
       >
-        {/* Chat Card - appears on hover with optimized animation */}
+        {/* Chat Card - Only appears when hovering the button directly */}
         <div
-          className="
+          className={`
             hidden sm:block
             w-[280px]
             rounded-sm
@@ -157,25 +158,20 @@ export default function Hero() {
             backdrop-blur-xl
             p-4
             shadow-[0_20px_60px_rgba(19,17,100,0.18)]
-            opacity-0
-            translate-x-4
-            scale-95
-            pointer-events-none
             transition-all duration-400 
             ease-[cubic-bezier(0.34,1.56,0.64,1)]
-            group-hover:opacity-100
-            group-hover:translate-x-0
-            group-hover:scale-100
-            group-hover:pointer-events-auto
             will-change-transform
-          "
+            ${isHovered 
+              ? 'opacity-100 translate-x-0 scale-100 pointer-events-auto' 
+              : 'opacity-0 translate-x-4 scale-95 pointer-events-none'
+            }
+          `}
         >
           <div className="flex items-start gap-3">
-
             {/* Support Icon with subtle animation */}
-            <div className="relative mt-0.5 flex h-10 w-10 items-center justify-center rounded-full bg-[#f0edf8] group-hover:scale-105 transition-transform duration-300">
+            <div className="relative mt-0.5 flex h-10 w-10 items-center justify-center rounded-full bg-[#f0edf8] transition-transform duration-300 group-hover:scale-105">
               <span className="absolute inset-0 rounded-full bg-[#b7901b]/20 animate-ping"></span>
-              <Headphones className="relative z-10 h-5 w-5 text-[#131164] group-hover:rotate-12 transition-transform duration-300" />
+              <Headphones className="relative z-10 h-5 w-5 text-[#131164] transition-transform duration-300 group-hover:rotate-12" />
             </div>
 
             {/* Text */}
@@ -185,16 +181,13 @@ export default function Hero() {
                   <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
                 </span>
-
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-500">
                   24/7 Call Assistance
                 </p>
               </div>
-
-              <p className="text-base font-bold text-gray-900 group-hover:text-[#131164] transition-colors duration-300">
+              <p className="text-base font-bold text-gray-900 transition-colors duration-300">
                 {CONTACT.phone}
               </p>
-
               <p className="mt-1 text-xs leading-relaxed text-gray-500">
                 Flight booking, changes and cancellations.
               </p>
@@ -220,10 +213,12 @@ export default function Hero() {
             will-change-transform
           "
           style={{
-            background: `linear-gradient(to right, #131164, #b7901b)`
+            background: `linear-gradient(to right, #131164, #b7901b)`,
+            pointerEvents: 'auto'
           }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-
           {/* Wave Rings - with navy & gold colored borders for visibility */}
           <span className="absolute inset-0 rounded-full border-2 border-[#b7901b]/60 animate-[ping_2s_ease-in-out_infinite]"></span>
           <span className="absolute inset-[-4px] rounded-full border-2 border-[#b7901b]/40 animate-[pulse_2.5s_ease-in-out_infinite_0.5s]"></span>
