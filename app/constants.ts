@@ -1,3 +1,5 @@
+// lib/constants.ts
+
 // Company Information
 export const COMPANY = {
   name: "Ticket to Middle East",
@@ -5,7 +7,7 @@ export const COMPANY = {
   email: "Reservations@tickettomiddleeast.com",
   phone: "+1-8666521753",
   phoneRaw: "18666521753",
-  address: "Basement Plot Number 35 Sector 11 Dwarka New Delhi 110075",
+  address: "Alexandria, VA 22310",
   year: new Date().getFullYear(),
 };
 
@@ -30,14 +32,14 @@ export const CONTACT = {
 export const BRAND = {
   name: COMPANY.name,
   tagline: "Travel & Adventures",
-  logo: "/logo/ticketlogo.png", // Consider updating logo path if you have a new logo
+  logo: "/logo/ticketlogo.png",
   favicon: "/favicon.ico",
 };
 
 // Default Meta Information
 export const META = {
-  title: `${COMPANY.name} | Luxury Travel & Holiday Packages`,
-  description: `Book luxury holiday packages, flights, hotels and customized trips with ${COMPANY.name}.`,
+  title: `${COMPANY.name} | Flights, Hotels & Holiday Packages to the Middle East`,
+  description: `Book cheap flights, luxury hotels, and customized holiday packages to the Middle East. Best deals on Dubai, Doha, Abu Dhabi, Kuwait & more.`,
   keywords: [
     COMPANY.name,
     "travel agency",
@@ -48,6 +50,12 @@ export const META = {
     "Doha package",
     "Abu Dhabi package",
     "Kuwait package",
+    "Riyadh package",
+    "Muscat package",
+    "cheap flights",
+    "luxury travel",
+    "UAE travel",
+    "Qatar travel",
   ],
 };
 

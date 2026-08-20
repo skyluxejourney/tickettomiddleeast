@@ -32,7 +32,7 @@ export default function WhyTrustSection() {
   return (
     <section className="py-12 sm:py-16 lg:pt-20 lg:py-5" style={{ backgroundColor: '#faf5e6' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-auto mx-auto">
           {/* Heading - Left Aligned */}
           <div 
             className={`mb-8 sm:mb-10 transition-all duration-700 ease-out ${

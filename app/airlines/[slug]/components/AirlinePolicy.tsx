@@ -122,7 +122,7 @@ export default function AirlinePolicy({ airline }: AirlinePolicyProps) {
 
                   {/* Left-side fade overlay - Updated to navy theme */}
                   <div className="absolute inset-0" style={{
-                    background: `linear-gradient(to right, #0c0a4aF2, #0c0a4aBF, transparent)`
+                    background: `linear-gradient(to right, #1c1a53f2, #0c0a4aBF, transparent)`
                   }} />
                 </div>
 

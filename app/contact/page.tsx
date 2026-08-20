@@ -30,7 +30,8 @@ export default function ContactPage() {
     setMapZoom(15);
   };
 
-  const mapSrc = `https://www.google.com/maps/embed/v1/place?q=Basement+Plot+Number+35+Sector+11+Dwarka+New+Delhi+110075&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&zoom=${mapZoom}`;
+  // ✅ UPDATED MAP URL with new address
+  const mapSrc = `https://www.google.com/maps/embed/v1/place?q=Alexandria+VA+22310&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&zoom=${mapZoom}`;
 
   return (
     <>
@@ -82,7 +83,7 @@ export default function ContactPage() {
               </a>
             </div>
 
-            {/* Address */}
+            {/* Address - Updated */}
             <div className="p-4 hover:bg-[#f5edc8]/40 transition-colors duration-300 flex flex-col items-center text-center" style={{ backgroundColor: '#faf5e6' }}>
               <div className="w-12 h-12 flex items-center justify-center mb-3" style={{ backgroundColor: '#131164' }}>
                 <MapPin size={20} className="text-white" />
@@ -91,9 +92,7 @@ export default function ContactPage() {
                 Address
               </h3>
               <p className="text-xs font-medium leading-relaxed" style={{ color: '#0c0a4a' }}>
-                Basement Plot Number 35<br />
-                Sector 11, Dwarka<br />
-                New Delhi, 110075
+                {CONTACT.address} {/* ✅ Now shows "Alexandria, VA 22310" */}
               </p>
             </div>
 
@@ -148,7 +147,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Google Maps */}
+          {/* Google Maps - Updated */}
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-xs font-semibold tracking-wider uppercase flex items-center gap-2" style={{ color: '#0c0a4a' }}>
@@ -185,7 +184,7 @@ export default function ContactPage() {
                 </button>
                 <div className="w-px h-6" style={{ backgroundColor: '#e2e8f0' }} />
                 <a 
-                  href={`https://www.google.com/maps/search/${encodeURIComponent(CONTACT.address)}`}
+                  href={`https://www.google.com/maps/search/${encodeURIComponent("Alexandria VA 22310")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[10px] font-medium hover:transition-colors"
@@ -204,7 +203,7 @@ export default function ContactPage() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Company Location - Basement Plot Number 35, Sector 11, Dwarka, New Delhi"
+                title="Alexandria, VA 22310"
               />
             </div>
             <div className="mt-1 text-[9px] text-right" style={{ color: '#0c0a4a30' }}>

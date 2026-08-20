@@ -178,7 +178,7 @@ export default function TravelDealsSection() {
       background: `linear-gradient(to bottom, #faf5e6, #ffffff)`
     }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-auto mx-auto">
           {/* Heading - Left Aligned */}
           <div 
             className={`mb-6 sm:mb-8 transition-all duration-700 ease-out ${
@@ -359,34 +359,32 @@ export default function TravelDealsSection() {
       {/* Booking Modal */}
       {isModalOpen && selectedDeal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-          {/* Overlay */}
+          {/* Overlay - Neutral dark with blur */}
           <div
             className="absolute inset-0 backdrop-blur-sm animate-in fade-in duration-300"
-            style={{ backgroundColor: '#0c0a4a99' }}
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
             onClick={closeModal}
           />
 
           {/* Modal */}
           <div className="relative bg-white max-w-md w-full shadow-2xl animate-in slide-in-from-bottom-4 duration-300 border" style={{ borderColor: '#e2e8f0' }}>
-            {/* Close Button */}
+            {/* Close Button - White */}
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 transition-all duration-300 hover:scale-110 hover:rotate-90 z-10"
-              style={{ color: '#0c0a4a66' }}
+              style={{ color: '#ffffff', textShadow: '0 1px 4px rgba(0,0,0,0.3)' }}
             >
               <X size={24} />
             </button>
 
-            {/* Header */}
-            <div className="rounded-t-lg p-6 text-white" style={{
-              background: `linear-gradient(to right, #131164, #1e1a8a)`
-            }}>
+            {/* Header - Blue Gradient (restored) */}
+            <div className="rounded-t-lg p-6 text-white" style={{ background: `linear-gradient(to right, #131164, #1e1a8a)` }}>
               <div className="flex items-center gap-3">
-                <div className="bg-white/20 p-2 animate-pulse">
-                  <Plane size={20} />
+                <div className="bg-white/20 p-2">
+                  <Plane size={20} className="text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold" style={{ color: '#ffffff' }}>
+                  <h3 className="text-lg font-bold text-white">
                     Book Your Trip
                   </h3>
                   <p className="text-white/80 text-sm">

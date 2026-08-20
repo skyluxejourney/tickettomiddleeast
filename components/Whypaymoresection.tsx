@@ -13,7 +13,7 @@ export default function WhyPayMoreSection() {
   return (
     <section className="pt-12 sm:pt-16 lg:pt-20" style={{ backgroundColor: '#faf5e6' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-auto mx-auto">
           {/* Heading - Top Left */}
           <div 
             className={`mb-6 sm:mb-8 transition-all duration-700 ease-out ${
@@ -140,16 +140,13 @@ export default function WhyPayMoreSection() {
 
       {/* Full Width Image - Updated with a more relevant booking theme */}
       <div 
-        className={`w-full mt-8 sm:mt-10 lg:mt-12 transition-all duration-1000 ease-out ${
-          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        }`}
-        style={{ transitionDelay: '500ms' }}
+        className={`w-full mt-8 sm:mt-10 lg:mt-12`}
       >
         <div className="overflow-hidden">
           <img
             src="/images/bookflight.png"
             alt={`Book your next flight with ${BRAND.name} - domestic and international travel`}
-            className="w-full h-auto object-cover transition-all duration-700 hover:scale-105"
+            className="w-full h-auto object-cover "
           />
         </div>
       </div>
