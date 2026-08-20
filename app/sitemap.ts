@@ -1,12 +1,14 @@
-// app/sitemap.ts
 import { MetadataRoute } from 'next';
 import { getAirlineSlugs } from './airlines/[slug]/constants';
 import { COMPANY } from './constants';
 
+
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = `https://${COMPANY.domain}`;
   
-  // Static pages
+
   const staticPages = [
     {
       url: baseUrl,
@@ -39,7 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
   ];
-  
   
   const airlineSlugs = getAirlineSlugs(); 
   const airlinePages = airlineSlugs.map((slug) => ({
